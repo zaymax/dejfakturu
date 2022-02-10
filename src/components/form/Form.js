@@ -7,24 +7,50 @@ export class Form extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      value: "invoiceWithoutVat",
-      invoiceNumber: 0,
+      //Basic information of invoice
+      invoiceNumber: null,
+      registrationNumber: null,
+      variableSymbol: "",
+      constantSymbol: "",
+      createdBy: "",
       issueDate:  new Date(Date.UTC(this.today.getMonth(), this.today.getDay(), this.today.getFullYear())),
-      // dueDate: this.issueDat,
+      dueDate: new Date(),
+      accountNumber: "",
 
+      //Supplier
+      identifierNumberOfSupplier: "",
+      nameOfSupplier: "",
+      vatIdentifierNumberOfSupplier: "",
+      streetOfSupplier: "",
+      cityOfSupplier: "",
+      zipCodeOfSupplier: "",
+
+      //Client
+      identifierNumberOfClient: "",
+      nameOfClient: "",
+      vatIdentifierNumberOfClient: "",
+      streetOfClient: "",
+      cityOfClient: "",
+      zipCodeOfClient: "",
+
+      //Invoice items:
+      invoiceItems: [],
+
+
+      //Note
+      note: "",
     };
 
     // this.handleChange = this.handleChange.bind(this);
     // this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.handleOnChangeInvoiceNumber  = this.handleOnChangeInvoiceNumber.bind(this);
   }
 
-  // handleOnSubmit(event) {
-  //     return;
-  // }
+  handleOnChangeInvoiceNumber(event) {
+    this.setState({invoiceNumber: event.target.value});
+  }
 
   render() {
-    console.log(this.state.issueDate);
-    console.log(this.state.dueDate);
     return (
       <form onSubmit={this.handleOnSubmit}>
         {/* <div> -- ADD LATER
@@ -45,42 +71,42 @@ export class Form extends Component {
             <div className="content-field">
               <div className="content-field__label">Číslo:</div>
               <div className="content-field__value">
-                <input type={"number"} value={this.state.invoiceNumber}/>
+                <input type={"number"} value={this.state.invoiceNumber} onChange={this.handleOnChangeInvoiceNumber}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Evidenční číslo:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.registrationNumber} />
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Variabilní symbol:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.variableSymbol} />
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Konstantní symbol:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.constantSymbol} />
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Vystavil:</div>
               <div className="content-field__value">
-                <input type={"text"} value={this.state.value}/>
+                <input type={"text"} value={this.state.createdBy} />
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Datum vystavení:</div>
               <div className="content-field__value">
-                <input type={"date"} value={"2011-09-29"} onChange={event => this.setState({issueDate: event.target.value})}/>
+                <input type={"date"} value={this.state.issueDate} onChange={event => this.setState({issueDate: event.target.value})}/>
               </div>
             </div>
 
@@ -94,7 +120,7 @@ export class Form extends Component {
             <div className="content-field">
               <div className="content-field__label">Cislo uctu:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.accountNumber} />
               </div>
             </div>
           </div>
@@ -110,42 +136,42 @@ export class Form extends Component {
             <div className="content-field">
               <div className="content-field__label">IČO:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.identifierNumberOfSupplier}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Jméno:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.nameOfSupplier}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">DIČ:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.vatIdentifierNumberOfSupplier}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Ulice:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.streetOfSupplier}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Město:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.cityOfSupplier}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">PSČ:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.zipCodeOfSupplier}/>
               </div>
             </div>
           </div>
@@ -161,42 +187,42 @@ export class Form extends Component {
             <div className="content-field">
               <div className="content-field__label">IČO:</div>
               <div className="content-field__value">
-                <input type={"number"} />
+                <input type={"number"} value={this.state.identifierNumberOfClient}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Jméno:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.nameOfClient}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">DIČ:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.vatIdentifierNumberOfClient}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Ulice:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.streetOfClient}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">Město:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.cityOfClient}/>
               </div>
             </div>
 
             <div className="content-field">
               <div className="content-field__label">PSČ:</div>
               <div className="content-field__value">
-                <input type={"text"} />
+                <input type={"text"} value={this.state.zipCodeOfClient}/>
               </div>
             </div>
           </div>
