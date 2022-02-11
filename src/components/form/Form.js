@@ -1,4 +1,8 @@
 import { Component } from "react";
+import { DateInput } from "../inputs/DateInput";
+import { NumberInput } from "../inputs/NumberInput";
+import { StringInput } from "../inputs/StringInput";
+import { Section } from "../section/Section";
 import "./form.scss";
 
 export class Form extends Component {
@@ -41,14 +45,36 @@ export class Form extends Component {
       note: "",
     };
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    this.handleOnChangeInvoiceNumber  = this.handleOnChangeInvoiceNumber.bind(this);
+    this.handleOnChangeInvoiceNumber = this.handleOnChangeInvoiceNumber.bind(this);
+    this.handleOnChangeConstantSymbol = this.handleOnChangeConstantSymbol.bind(this);
+    this.handleOnChangeCreatedBy = this.handleOnChangeCreatedBy.bind(this);
+
   }
 
   handleOnChangeInvoiceNumber(event) {
     this.setState({invoiceNumber: event.target.value});
   }
+
+  handleOnChangeRegistrationNumber(event) {
+    this.setState({registrationNumber: event.target.value});
+  }
+
+  handleOnChangeVariableSymbol(event) {
+    this.setState({variableSymbol: event.target.value});
+  }
+
+  handleOnChangeConstantSymbol(event) {
+    this.setState({constantSymbol: event.target.value});
+  }
+
+  handleOnChangeCreatedBy(event) {
+    this.setState({createdBy: event.target.value});
+  }
+
+  handleOnChangeIssueDate(event) {
+    this.setState({issueDate: event.target.value})
+  }
+
 
   render() {
     return (
@@ -63,70 +89,29 @@ export class Form extends Component {
 
         <h2>Vystavení nové faktury</h2>
 
-        <div className="section">
-          <div className="section__header">
-            <h3>Zakladni udaje:</h3>
-          </div>
-          <div className="section__content">
-            <div className="content-field">
-              <div className="content-field__label">Číslo:</div>
-              <div className="content-field__value">
-                <input type={"number"} value={this.state.invoiceNumber} onChange={this.handleOnChangeInvoiceNumber}/>
-              </div>
-            </div>
+        <Section header={"Zakladni udaje"}>
+          <NumberInput label={"Číslo"} value={this.state.invoiceNumber} handler={this.handleOnChangeInvoiceNumber}/>
+          <NumberInput label={"Evidenční číslo"} value={this.state.registrationNumber} handler={this.handleOnChangeRegistrationNumber}/>
+          <NumberInput label={"Variabilní symbol"} value={this.state.variableSymbol} handler={this.handleOnChangeVariableSymbol}/>
+          <NumberInput label={"Konstantní symbol"} value={this.state.constantSymbol} handler={this.handleOnChangeVariableSymbol}/>
+          <StringInput label={"Vystavil"} value={this.state.createdBy} handler={this.handleOnChangeCreatedBy} />
+          <DateInput label={"Datum vystavení"} value={this.state.issueDate} handler={this.handleOnChangeIssueDate} />
+          
 
-            <div className="content-field">
-              <div className="content-field__label">Evidenční číslo:</div>
-              <div className="content-field__value">
-                <input type={"number"} value={this.state.registrationNumber} />
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Variabilní symbol:</div>
-              <div className="content-field__value">
-                <input type={"number"} value={this.state.variableSymbol} />
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Konstantní symbol:</div>
-              <div className="content-field__value">
-                <input type={"number"} value={this.state.constantSymbol} />
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Vystavil:</div>
-              <div className="content-field__value">
-                <input type={"text"} value={this.state.createdBy} />
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Datum vystavení:</div>
-              <div className="content-field__value">
-                <input type={"date"} value={this.state.issueDate} onChange={event => this.setState({issueDate: event.target.value})}/>
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Splatnost:</div>
-              <div className="content-field__value">
-                <input type={"date"} value={this.state.dueDate}/>
-              </div>
-            </div>
-
-            <div className="content-field">
-              <div className="content-field__label">Cislo uctu:</div>
-              <div className="content-field__value">
-                <input type={"number"} value={this.state.accountNumber} />
-              </div>
+          <div className="content-field">
+            <div className="content-field__label">Splatnost:</div>
+            <div className="content-field__value">
+              <input type={"date"} value={this.state.dueDate}/>
             </div>
           </div>
 
-          <hr />
-        </div>
+          <div className="content-field">
+            <div className="content-field__label">Cislo uctu:</div>
+            <div className="content-field__value">
+              <input type={"number"} value={this.state.accountNumber} />
+            </div>
+          </div>
+        </Section>
 
         <div className="section">
           <div className="section__header">
@@ -230,14 +215,7 @@ export class Form extends Component {
           <hr />
         </div>
 
-        <div className="section">
-          <div className="section__header">
-            <h3>Položky faktury:</h3>
-          </div>
-          <div className="section__content"></div>
-
-          <hr />
-        </div>
+        <Section header={"Položky faktury"} />
 
         <div className="section">
           <div className="section__header">
