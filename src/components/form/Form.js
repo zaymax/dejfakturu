@@ -2,6 +2,7 @@ import { Component } from "react";
 import { DateInput } from "../inputs/DateInput";
 import { NumberInput } from "../inputs/NumberInput";
 import { StringInput } from "../inputs/StringInput";
+import { InvoiceItems } from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
 import "./form.scss";
 
@@ -38,7 +39,10 @@ export class Form extends Component {
       zipCodeOfClient: "",
 
       //Invoice items:
-      invoiceItems: [],
+      invoiceItems: [
+        { count: 4, description: "IT Sluzby", price: 100, totalPrice: 400 },
+        { count: 1, description: "IT Sluzby", price: 100, totalPrice: 100 },
+      ],
 
 
       //Note
@@ -185,7 +189,9 @@ export class Form extends Component {
           <StringInput label={"PSČ"} value={this.state.zipCodeOfClient}  handler={this.handleOnChangeZipCodeOfClient} />
         </Section>
 
-        <Section header={"Položky faktury"} />
+        <Section header={"Položky faktury"}>
+            <InvoiceItems items={this.state.invoiceItems} />
+        </Section>
 
         <Section header={"Poznámka"}>
             <input type={"text"} />
