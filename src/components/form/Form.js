@@ -15,38 +15,38 @@ export class Form extends Component {
       //Basic information of invoice
       invoiceNumber: null,
       registrationNumber: null,
-      variableSymbol: "",
-      constantSymbol: "",
-      createdBy: "",
+      variableSymbol: null,
+      constantSymbol: null,
+      createdBy: "Admin",
       issueDate:  null,
       dueDate: null,
-      accountNumber: "",
+      accountNumber: "285969/0800",
 
       //Supplier
-      identifierNumberOfSupplier: "",
-      nameOfSupplier: "",
-      vatIdentifierNumberOfSupplier: "",
-      streetOfSupplier: "",
-      cityOfSupplier: "",
-      zipCodeOfSupplier: "",
+      identifierNumberOfSupplier: null,
+      nameOfSupplier: "CCC",
+      vatIdentifierNumberOfSupplier: "CZ545144545",
+      streetOfSupplier: "Streeetttt",
+      cityOfSupplier: "City",
+      zipCodeOfSupplier: "180 00",
 
       //Client
-      identifierNumberOfClient: "",
-      nameOfClient: "",
-      vatIdentifierNumberOfClient: "",
-      streetOfClient: "",
-      cityOfClient: "",
-      zipCodeOfClient: "",
+      identifierNumberOfClient: null,
+      nameOfClient: "Admin",
+      vatIdentifierNumberOfClient: "CZ4444444",
+      streetOfClient: "Street admin",
+      cityOfClient: "City admin",
+      zipCodeOfClient: "41515",
 
       //Invoice items:
       invoiceItems: [
-        { count: 4, description: "IT Sluzby", price: 100, totalPrice: 400 },
-        { count: 1, description: "IT Sluzby", price: 100, totalPrice: 100 },
+        { id: 0, count: 4, description: "IT Sluzby", price: 100, totalPrice: 400 },
+        { id: 1, count: 1, description: "IT Sluzby", price: 100, totalPrice: 100 },
       ],
 
 
       //Note
-      note: "",
+      note: "Note",
 
     };
 
@@ -72,6 +72,8 @@ export class Form extends Component {
     this.handleOnChangeStreetOfClient = this.handleOnChangeStreetOfClient.bind(this);
     this.handleOnChangeCityOfClient = this.handleOnChangeCityOfClient.bind(this);
     this.handleOnChangeZipCodeOfClient = this.handleOnChangeZipCodeOfClient.bind(this);
+
+    this.setStateOfInvoiceItems = this.setStateOfInvoiceItems.bind(this);
   }
 
   handleOnChangeInvoiceNumber(event) {
@@ -154,6 +156,18 @@ export class Form extends Component {
     this.setState({zipCodeOfClient: event.target.value});
   }
 
+  setStateOfInvoiceItems(items) {
+    this.setState({
+      items: items
+    });
+  }
+
+  handleOnCHangeNote(event) {
+    this.setState({
+      note: event.target.value
+    });
+  }
+
   render() {
     return (
       <form onSubmit={this.handleOnSubmit}>
@@ -165,36 +179,36 @@ export class Form extends Component {
           <NumberInput label={"Evidenční číslo"} value={this.state.registrationNumber} handler={this.handleOnChangeRegistrationNumber}/>
           <NumberInput label={"Variabilní symbol"} value={this.state.variableSymbol} handler={this.handleOnChangeVariableSymbol}/>
           <NumberInput label={"Konstantní symbol"} value={this.state.constantSymbol} handler={this.handleOnChangeConstantSymbol}/>
-          <StringInput label={"Vystavil"} value={this.state.createdBy} handler={this.handleOnChangeCreatedBy} />
+          <StringInput label={"Vystavil"} value={this.state.createdBy || ''} handler={this.handleOnChangeCreatedBy} />
           <DateInput label={"Datum vystavení"} value={this.state.issueDate} handler={this.handleOnChangeIssueDate} />
           <DateInput label={"Splatnost"} value={this.state.dueDate} handler={this.handleOnChangeDueDate} />
-          <NumberInput label={"Cislo uctu"} value={this.state.accountNumber} handler={this.handleOnChangeAccountNumber} />
+          <StringInput label={"Cislo uctu"} value={this.state.accountNumber || ''} handler={this.handleOnChangeAccountNumber} />
         </Section>
 
         <Section header={"Dodavatel"}>
           <NumberInput label={"IČO"} value={this.state.identifierNumberOfSupplier} handler={this.handleOnChangeIdentifierNumberOfSupplier} />
-          <StringInput label={"Jmeno"} value={this.state.nameOfSupplier} handler={this.handleOnChangeNameOfSupplier} />
-          <StringInput label={"DIČ"} value={this.state.vatIdentifierNumberOfSupplier} handler={this.handleOnChangeVatIdentifierNumberOfSupplier} />
-          <StringInput label={"Ulice"} value={this.state.streetOfSupplier} handler={this.handleOnChangeStreetOfSupplier} />
-          <StringInput label={"Město"} value={this.state.cityOfSupplier} handler={this.handleOnChangeCityOfSupplier} />
-          <StringInput label={"PSČ"} value={this.state.zipCodeOfSupplier}  handler={this.handleOnChangeZipCodeOfSupplier} />
+          <StringInput label={"Jmeno"} value={this.state.nameOfSupplier || ''} handler={this.handleOnChangeNameOfSupplier} />
+          <StringInput label={"DIČ"} value={this.state.vatIdentifierNumberOfSupplier || ''} handler={this.handleOnChangeVatIdentifierNumberOfSupplier} />
+          <StringInput label={"Ulice"} value={this.state.streetOfSupplier || ''} handler={this.handleOnChangeStreetOfSupplier} />
+          <StringInput label={"Město"} value={this.state.cityOfSupplier || ''} handler={this.handleOnChangeCityOfSupplier} />
+          <StringInput label={"PSČ"} value={this.state.zipCodeOfSupplier || ''}  handler={this.handleOnChangeZipCodeOfSupplier} />
         </Section>
 
         <Section header={"Odběratel"}>
-        <NumberInput label={"IČO"} value={this.state.identifierNumberOfClient} handler={this.handleOnChangeIdentifierNumberOfClient} />
-          <StringInput label={"Jmeno"} value={this.state.nameOfClient} handler={this.handleOnChangeNameOfClient} />
-          <StringInput label={"DIČ"} value={this.state.vatIdentifierNumberOfClient} handler={this.handleOnChangeVatIdentifierNumberOfClient} />
-          <StringInput label={"Ulice"} value={this.state.streetOfClient} handler={this.handleOnChangeStreetOfClient} />
-          <StringInput label={"Město"} value={this.state.cityOfClient} handler={this.handleOfChangeCityOfClient} />
-          <StringInput label={"PSČ"} value={this.state.zipCodeOfClient}  handler={this.handleOnChangeZipCodeOfClient} />
+          <NumberInput label={"IČO"} value={this.state.identifierNumberOfClient} handler={this.handleOnChangeIdentifierNumberOfClient} />
+          <StringInput label={"Jmeno"} value={this.state.nameOfClient || ''} handler={this.handleOnChangeNameOfClient} />
+          <StringInput label={"DIČ"} value={this.state.vatIdentifierNumberOfClient || ''} handler={this.handleOnChangeVatIdentifierNumberOfClient} />
+          <StringInput label={"Ulice"} value={this.state.streetOfClient || ''} handler={this.handleOnChangeStreetOfClient} />
+          <StringInput label={"Město"} value={this.state.cityOfClient || ''} handler={this.handleOnChangeCityOfClient} />
+          <StringInput label={"PSČ"} value={this.state.zipCodeOfClient || ''}  handler={this.handleOnChangeZipCodeOfClient} />
         </Section>
 
         <Section header={"Položky faktury"}>
-            <InvoiceItems items={this.state.invoiceItems} />
+            <InvoiceItems items={this.state.invoiceItems} setStateOfInvoiceItems={this.setStateOfInvoiceItems}/>
         </Section>
 
         <Section header={"Poznámka"}>
-            <input type={"text"} />
+            {/* <input type={"text"} value={this.state.note} onChange={this.handleOnChangeNote}/> */}
         </Section>
 
       </form>

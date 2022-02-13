@@ -7,7 +7,7 @@ export class StringInput extends Component {
             <div className="content-field">
                 <div className="content-field__label">{this.props.label}:</div>
                 <div className="content-field__value">
-                    <input type={"text"} value={this.props.value} onChange={this.props.handler}/>
+                    <input type="text" value={this.props.value || ''} onChange={this.props.handler}/>
                 </div>
             </div>
         );
