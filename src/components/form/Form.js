@@ -55,7 +55,7 @@ export class Form extends Component {
       ],
 
       //Note
-      note: "Note",
+      note: "",
     };
 
     this.handleOnChangeInvoiceNumber =
@@ -99,6 +99,12 @@ export class Form extends Component {
       this.handleOnChangeZipCodeOfClient.bind(this);
 
     this.setStateOfInvoiceItems = this.setStateOfInvoiceItems.bind(this);
+    this.handleOnChangeNote = this.handleOnChangeNote.bind(this);
+
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddItem = this.handleAddItem.bind(this);
+
+    this.calculationTotal = this.calculationTotal.bind(this);
   }
 
   handleOnChangeInvoiceNumber(event) {
@@ -187,13 +193,48 @@ export class Form extends Component {
     });
   }
 
-  handleOnCHangeNote(event) {
+  handleDelete(itemId) {
+    const items = this.state.invoiceItems.filter(item => item.id !== itemId);
+    this.setState({
+      invoiceItems: items
+    })
+  }
+
+  handleAddItem() {
+    const index = this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
+    const items = this.state.invoiceItems.concat({
+      id: index,
+      count: 0,
+      description: "Popis",
+      price: 0,
+      totalPrice: 0
+    });
+    this.setState({
+      invoiceItems: items
+    })
+  }
+
+  handleOnChangeNote(event) {
     this.setState({
       note: event.target.value,
     });
   }
 
+  calculationTotal() {
+    const items = this.state.invoiceItems;
+    let total = 0;
+    for (let i = 0; i < items.length; i++) {
+      total += items[i].count * items[i].price;  
+    }
+    return total;
+  }
+
+  updateStateInvoiceItems(item) {
+    // update state of item
+  }
+
   render() {
+    const total = this.calculationTotal();
     return (
       <form onSubmit={this.handleOnSubmit}>
         <h2>Vystavení nové faktury</h2>
@@ -311,12 +352,20 @@ export class Form extends Component {
           <InvoiceItems
             items={this.state.invoiceItems}
             setStateOfInvoiceItems={this.setStateOfInvoiceItems}
+            handleDeleteItem={this.handleDelete}
+            handleAddItem={this.handleAddItem}
           />
         </Section>
 
         <Section header={"Poznámka"}>
-          {/* <input type={"text"} value={this.state.note} onChange={this.handleOnChangeNote}/> */}
+          <div className="note">
+            <textarea value={this.state.note} onChange={this.handleOnChangeNote} />
+          </div>
         </Section>
+
+        <div className="section-total">
+          <div className="section-total__withoutVat"><p>Total price - {total}</p></div>
+        </div>
       </form>
     );
   }

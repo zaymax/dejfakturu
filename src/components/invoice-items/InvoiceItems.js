@@ -2,26 +2,15 @@ import { Component } from "react";
 import { InvoiceItem } from "./InvoiceItem";
 
 export class InvoiceItems extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: this.props.items,
-    };
-
-    this.handleClickDelete = this.handleClickDelete.bind(this);
-  }
-
-  handleClickDelete(item) {}
 
   render() {
-    const items = this.state.items.map((item) => (
+    const items = this.props.items.map((item) => (
       <div key={item.id.toString()} className="invoice-items__item">
-        <InvoiceItem item={item} />
-        {this.state.items.length > 1 && (
+        <InvoiceItem item={item} onDelete={this.props.handleDeleteItem} id={item.id}/>
+        {this.props.items.length > 1 && (
           <button
             type="button"
-            onClick={(item) => this.handleClickDelete({ item })}
+            onClick={() => this.props.handleDeleteItem(item.id)}
           >
             {"Delete"}
           </button>
@@ -47,7 +36,10 @@ export class InvoiceItems extends Component {
         </div>
         <div className="invoice-items">{items}</div>
         <div className="invoice-items__buttons">
-          {/* <button>Add another item</button> */}
+          <button
+            type="button"
+            onClick={this.props.handleAddItem}
+          >Add another item</button>
         </div>
       </div>
     );
