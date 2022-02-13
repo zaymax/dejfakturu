@@ -16,7 +16,7 @@ export class Form extends Component {
       variableSymbol: null,
       constantSymbol: null,
       createdBy: "Admin",
-      issueDate: null,
+      issueDate: new Date(),
       dueDate: null,
       accountNumber: "285969/0800",
 
@@ -105,6 +105,11 @@ export class Form extends Component {
     this.handleAddItem = this.handleAddItem.bind(this);
 
     this.calculationTotal = this.calculationTotal.bind(this);
+
+    this.updateStateInvoiceItemCount = this.updateStateInvoiceItemCount.bind(this);
+    this.updateStateInvoiceItemDescription = this.updateStateInvoiceItemDescription.bind(this);
+    this.updateStateInvoiceItemPrice = this.updateStateInvoiceItemPrice.bind(this); 
+    this.updateStateInvoiceItemTotalPrice = this.updateStateInvoiceItemTotalPrice.bind(this);
   }
 
   handleOnChangeInvoiceNumber(event) {
@@ -229,9 +234,43 @@ export class Form extends Component {
     return total;
   }
 
-  updateStateInvoiceItems(item) {
-    // update state of item
+  updateStateInvoiceItemCount(value, id) {
+    const items = this.state.invoiceItems;
+    const indexItem = items.findIndex(e => e.id === id);
+    items[indexItem].count = value;
+    this.setState({
+      invoiceItems: items
+    });
   }
+
+  updateStateInvoiceItemDescription(value, id) {
+    const items = this.state.invoiceItems;
+    const indexItem = items.findIndex(e => e.id === id);
+    items[indexItem].description = value;
+    this.setState({
+      invoiceItems: items
+    });
+  }
+
+  updateStateInvoiceItemPrice(value, id) {
+    const items = this.state.invoiceItems;
+    const indexItem = items.findIndex(e => e.id === id);
+    items[indexItem].price = value;
+    this.setState({
+      invoiceItems: items
+    });
+  }
+
+  updateStateInvoiceItemTotalPrice(value, id) {
+    const items = this.state.invoiceItems;
+    const indexItem = items.findIndex(e => e.id === id);
+    items[indexItem].totalPrice = value;
+    this.setState({
+      invoiceItems: items
+    });
+  }
+
+
 
   render() {
     const total = this.calculationTotal();
@@ -354,6 +393,10 @@ export class Form extends Component {
             setStateOfInvoiceItems={this.setStateOfInvoiceItems}
             handleDeleteItem={this.handleDelete}
             handleAddItem={this.handleAddItem}
+            updateStateInvoiceItemCount={this.updateStateInvoiceItemCount}
+            updateStateInvoiceItemDescription={this.updateStateInvoiceItemDescription}
+            updateStateInvoiceItemPrice={this.updateStateInvoiceItemPrice}
+            updateStateInvoiceItemTotalPrice={this.updateStateInvoiceItemTotalPrice}
           />
         </Section>
 

@@ -6,7 +6,11 @@ export class InvoiceItem extends Component {
     super(props);
 
     this.state = {
-      item: this.props.item,
+      id: this.props.item.id,
+      count: this.props.item.count,
+      description: this.props.item.description,
+      price: this.props.item.price,
+      totalPrice: this.props.item.totalPrice
     };
 
     this.handleOnChangeCount = this.handleOnChangeCount.bind(this);
@@ -17,52 +21,58 @@ export class InvoiceItem extends Component {
 
   handleOnChangeCount(event) {
     this.setState({
-      count: event.target.value,
+      count: Number(event.target.value)
     });
+    this.props.updateStateInvoiceItemCount(Number(event.target.value), this.state.id);
   }
 
   handleOnChangeDescription(event) {
     this.setState({
-      description: event.target.value,
+      description: event.target.value
     });
+    this.props.updateStateInvoiceItemDescription(event.target.value, this.state.id);
   }
 
   handleOnChangePrice(event) {
     this.setState({
-      price: event.target.value,
+      price: Number(event.target.value)
     });
+    this.props.updateStateInvoiceItemPrice(Number(event.target.value), this.state.id);
   }
 
   handleOnChangeTotalPrice(event) {
     this.setState({
-      totalPrice: event.target.value,
+      totalPrice: Number(event.target.value)
     });
+    this.props.updateStateInvoiceItemTotalPrice(Number(event.target.value), this.state.id);
   }
+
+  
 
   render() {
     return (
       <div className="invoice-item">
         <input
           type="number"
-          value={this.state.item.count}
+          value={this.state.count}
           className="invoice-item__value"
           onChange={this.handleOnChangeCount}
         />
         <input
           type="string"
-          value={this.props.item.description}
+          value={this.state.description}
           className="invoice-item__value"
           onChange={this.handleOnChangeDescription}
         />
         <input
           type="number"
-          value={this.props.item.price}
+          value={this.state.price}
           className="invoice-item__value"
           onChange={this.handleOnChangePrice}
         />
         <input
           type="number"
-          value={this.props.item.totalPrice}
+          value={this.state.totalPrice}
           className="invoice-item__value"
           onChange={this.handleOnChangeTotalPrice}
         />

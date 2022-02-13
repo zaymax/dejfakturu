@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Component } from "react";
 
 export class DateInput extends Component {
@@ -8,7 +9,8 @@ export class DateInput extends Component {
         <div className="content-field__value">
           <input
             type="date"
-            value={this.props.value || ""}
+            name="date"
+            value={this.props.value ? moment(new Date(this.props.value)).format("YYYY-MM-DD") : ""}
             onChange={this.props.handler}
           />
         </div>
