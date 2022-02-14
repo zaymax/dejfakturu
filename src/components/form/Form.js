@@ -5,6 +5,8 @@ import { StringInput } from "../inputs/StringInput";
 import { InvoiceItems } from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
 import "./form.scss";
+import ReactPDF from '@react-pdf/renderer';
+import { FormPDF } from "./form-pdf/FormPDF";
 
 export class Form extends Component {
   constructor(props) {
@@ -110,6 +112,8 @@ export class Form extends Component {
     this.updateStateInvoiceItemDescription = this.updateStateInvoiceItemDescription.bind(this);
     this.updateStateInvoiceItemPrice = this.updateStateInvoiceItemPrice.bind(this); 
     this.updateStateInvoiceItemTotalPrice = this.updateStateInvoiceItemTotalPrice.bind(this);
+    
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
   handleOnChangeInvoiceNumber(event) {
@@ -270,7 +274,9 @@ export class Form extends Component {
     });
   }
 
-
+  handleOnSubmit() {
+    ReactPDF.render(<FormPDF />, `${__dirname}/example.pdf`);
+  }
 
   render() {
     const total = this.calculationTotal();
@@ -409,6 +415,8 @@ export class Form extends Component {
         <div className="section-total">
           <div className="section-total__withoutVat"><p>Total price - {total}</p></div>
         </div>
+
+        <input type="submit" value="Submit" />
       </form>
     );
   }
