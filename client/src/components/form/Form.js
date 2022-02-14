@@ -5,8 +5,6 @@ import { StringInput } from "../inputs/StringInput";
 import { InvoiceItems } from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
 import "./form.scss";
-import ReactPDF from '@react-pdf/renderer';
-import { FormPDF } from "./form-pdf/FormPDF";
 
 export class Form extends Component {
   constructor(props) {
@@ -275,7 +273,6 @@ export class Form extends Component {
   }
 
   handleOnSubmit() {
-    ReactPDF.render(<FormPDF />, `${__dirname}/example.pdf`);
   }
 
   render() {
