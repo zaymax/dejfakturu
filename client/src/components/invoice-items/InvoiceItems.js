@@ -1,8 +1,11 @@
+import { t } from "i18next";
 import { Component } from "react";
+import { withTranslation } from "react-i18next";
 import { InvoiceItem } from "./InvoiceItem";
 
-export class InvoiceItems extends Component {
+class InvoiceItems extends Component {
   render() {
+    const { t } = this.props;
     const items = this.props.items.map((item) => (
       <div key={item.id.toString()} className="invoice-items__item">
         <InvoiceItem
@@ -19,7 +22,7 @@ export class InvoiceItems extends Component {
             type="button"
             onClick={() => this.props.handleDeleteItem(item.id)}
           >
-            {"Delete"}
+            {t('Delete')}
           </button>
         )}
       </div>
@@ -29,25 +32,27 @@ export class InvoiceItems extends Component {
       <div>
         <div className="invoice-item__labels">
           <div className="invoice-item__label">
-            <label>Počet:</label>
+            <label>{t('Count')}:</label>
           </div>
           <div className="invoice-item__label">
-            <label>Popis:</label>
+            <label>{t('Description')}:</label>
           </div>
           <div className="invoice-item__label">
-            <label>Cena:</label>
+            <label>{t('Price')}:</label>
           </div>
           <div className="invoice-item__label">
-            <label>Celková cena:</label>
+            <label>{t('Total price')}:</label>
           </div>
         </div>
         <div className="invoice-items">{items}</div>
         <div className="invoice-items__buttons">
           <button type="button" onClick={this.props.handleAddItem}>
-            Add another item
+            {t('Add another item')}
           </button>
         </div>
       </div>
     );
   }
 }
+
+export default withTranslation()(InvoiceItems);

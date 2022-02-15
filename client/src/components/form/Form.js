@@ -2,13 +2,14 @@ import { Component } from "react";
 import { DateInput } from "../inputs/DateInput";
 import { NumberInput } from "../inputs/NumberInput";
 import { StringInput } from "../inputs/StringInput";
-import { InvoiceItems } from "../invoice-items/InvoiceItems";
+import InvoiceItems from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
 import axios from 'axios';
 import { saveAs } from 'file-saver';
 import "./form.scss";
+import { withTranslation } from "react-i18next";
 
-export class Form extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -275,7 +276,7 @@ export class Form extends Component {
   }
 
   handleOnSubmit() {
-    // this.createAndDownloadPdf();
+
   }
 
   createAndDownloadPdf = () => {
@@ -289,121 +290,122 @@ export class Form extends Component {
   }
 
   render() {
+    const { t } = this.props;
     const total = this.calculationTotal();
     return (
       <form onSubmit={this.handleOnSubmit}>
-        <h2>Vystavení nové faktury</h2>
+        <h2>{t('Issuance of a new invoice')}</h2>
 
-        <Section header={"Zakladni udaje"}>
+        <Section header={t('Basic data')}>
           <NumberInput
-            label={"Číslo"}
+            label={t('Invoice number')}
             value={this.state.invoiceNumber}
             handler={this.handleOnChangeInvoiceNumber}
           />
           <NumberInput
-            label={"Evidenční číslo"}
+            label={t('Registration number')}
             value={this.state.registrationNumber}
             handler={this.handleOnChangeRegistrationNumber}
           />
           <NumberInput
-            label={"Variabilní symbol"}
+            label={t('Variable symbol')}
             value={this.state.variableSymbol}
             handler={this.handleOnChangeVariableSymbol}
           />
           <NumberInput
-            label={"Konstantní symbol"}
+            label={t('Constant symbol')}
             value={this.state.constantSymbol}
             handler={this.handleOnChangeConstantSymbol}
           />
           <StringInput
-            label={"Vystavil"}
+            label={t('Created by')}
             value={this.state.createdBy || ""}
             handler={this.handleOnChangeCreatedBy}
           />
           <DateInput
-            label={"Datum vystavení"}
+            label={t('Date of Issue')}
             value={this.state.issueDate}
             handler={this.handleOnChangeIssueDate}
           />
           <DateInput
-            label={"Splatnost"}
+            label={t('Due by')}
             value={this.state.dueDate}
             handler={this.handleOnChangeDueDate}
           />
           <StringInput
-            label={"Cislo uctu"}
+            label={t('Account number')}
             value={this.state.accountNumber || ""}
             handler={this.handleOnChangeAccountNumber}
           />
         </Section>
 
-        <Section header={"Dodavatel"}>
+        <Section header={t('Supplier')}>
           <NumberInput
-            label={"IČO"}
+            label={t('CIN')}
             value={this.state.identifierNumberOfSupplier}
             handler={this.handleOnChangeIdentifierNumberOfSupplier}
           />
           <StringInput
-            label={"Jmeno"}
+            label={t('Name')}
             value={this.state.nameOfSupplier || ""}
             handler={this.handleOnChangeNameOfSupplier}
           />
           <StringInput
-            label={"DIČ"}
+            label={t('VAT')}
             value={this.state.vatIdentifierNumberOfSupplier || ""}
             handler={this.handleOnChangeVatIdentifierNumberOfSupplier}
           />
           <StringInput
-            label={"Ulice"}
+            label={t('Street')}
             value={this.state.streetOfSupplier || ""}
             handler={this.handleOnChangeStreetOfSupplier}
           />
           <StringInput
-            label={"Město"}
+            label={t('City')}
             value={this.state.cityOfSupplier || ""}
             handler={this.handleOnChangeCityOfSupplier}
           />
           <StringInput
-            label={"PSČ"}
+            label={t('Zip code')}
             value={this.state.zipCodeOfSupplier || ""}
             handler={this.handleOnChangeZipCodeOfSupplier}
           />
         </Section>
 
-        <Section header={"Odběratel"}>
+        <Section header={t('Customer')}>
           <NumberInput
-            label={"IČO"}
+            label={t('CIN')}
             value={this.state.identifierNumberOfClient}
             handler={this.handleOnChangeIdentifierNumberOfClient}
           />
           <StringInput
-            label={"Jmeno"}
+            label={t('Name')}
             value={this.state.nameOfClient || ""}
             handler={this.handleOnChangeNameOfClient}
           />
           <StringInput
-            label={"DIČ"}
+            label={t('VAT')}
             value={this.state.vatIdentifierNumberOfClient || ""}
             handler={this.handleOnChangeVatIdentifierNumberOfClient}
           />
           <StringInput
-            label={"Ulice"}
+            label={t('Street')}
             value={this.state.streetOfClient || ""}
             handler={this.handleOnChangeStreetOfClient}
           />
           <StringInput
-            label={"Město"}
+            label={t('City')}
             value={this.state.cityOfClient || ""}
             handler={this.handleOnChangeCityOfClient}
           />
           <StringInput
-            label={"PSČ"}
+            label={t('Zip code')}
             value={this.state.zipCodeOfClient || ""}
             handler={this.handleOnChangeZipCodeOfClient}
           />
         </Section>
 
-        <Section header={"Položky faktury"}>
+        <Section header={t('Invoice items')}>
           <InvoiceItems
             items={this.state.invoiceItems}
             setStateOfInvoiceItems={this.setStateOfInvoiceItems}
@@ -416,21 +418,22 @@ export class Form extends Component {
           />
         </Section>
 
-        <Section header={"Poznámka"}>
+        <Section header={t('Note')}>
           <div className="note">
             <textarea value={this.state.note} onChange={this.handleOnChangeNote} />
           </div>
         </Section>
 
         <div className="section-total">
-          <div className="section-total__withoutVat"><p>Total price - {total}</p></div>
+          <div className="section-total__withoutVat"><p>{t('Total price')} - {total}</p></div>
         </div>
 
-        {/* <input type="submit" value="Submit" /> */}
         <button type="button" onClick={this.createAndDownloadPdf}>
-            Create and download pdf
+            {t('Generate PDF')}
           </button>
       </form>
     );
   }
 }
+
+export default withTranslation()(Form);
