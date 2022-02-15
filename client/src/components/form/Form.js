@@ -4,9 +4,9 @@ import { NumberInput } from "../inputs/NumberInput";
 import { StringInput } from "../inputs/StringInput";
 import { InvoiceItems } from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
+import axios from 'axios';
+import { saveAs } from 'file-saver';
 import "./form.scss";
-import ReactPDF from '@react-pdf/renderer';
-import { FormPDF } from "./form-pdf/FormPDF";
 
 export class Form extends Component {
   constructor(props) {
@@ -275,7 +275,17 @@ export class Form extends Component {
   }
 
   handleOnSubmit() {
-    ReactPDF.render(<FormPDF />, `${__dirname}/example.pdf`);
+    // this.createAndDownloadPdf();
+  }
+
+  createAndDownloadPdf = () => {
+    axios.post('/create-pdf', this.state)
+      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+        saveAs(pdfBlob, 'newPdf.pdf');
+      })
   }
 
   render() {
@@ -416,7 +426,10 @@ export class Form extends Component {
           <div className="section-total__withoutVat"><p>Total price - {total}</p></div>
         </div>
 
-        <input type="submit" value="Submit" />
+        {/* <input type="submit" value="Submit" /> */}
+        <button type="button" onClick={this.createAndDownloadPdf}>
+            Create and download pdf
+          </button>
       </form>
     );
   }
