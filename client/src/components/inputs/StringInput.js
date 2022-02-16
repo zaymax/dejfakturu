@@ -10,6 +10,7 @@ export class StringInput extends Component {
             type="text"
             value={this.props.value || ""}
             onChange={this.props.handler}
+            name={this.props.name}
           />
         </div>
       </div>

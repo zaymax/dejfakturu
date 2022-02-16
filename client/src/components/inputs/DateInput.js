@@ -9,7 +9,7 @@ export class DateInput extends Component {
         <div className="content-field__value">
           <input
             type="date"
-            name="date"
+            name={this.props.name}
             value={this.props.value ? moment(new Date(this.props.value)).format("YYYY-MM-DD") : ""}
             onChange={this.props.handler}
           />

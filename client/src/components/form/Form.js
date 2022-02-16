@@ -61,48 +61,7 @@ class Form extends Component {
       note: "",
     };
 
-    this.handleOnChangeInvoiceNumber =
-      this.handleOnChangeInvoiceNumber.bind(this);
-    this.handleOnChangeRegistrationNumber =
-      this.handleOnChangeRegistrationNumber.bind(this);
-    this.handleOnChangeVariableSymbol =
-      this.handleOnChangeVariableSymbol.bind(this);
-    this.handleOnChangeConstantSymbol =
-      this.handleOnChangeConstantSymbol.bind(this);
-    this.handleOnChangeCreatedBy = this.handleOnChangeCreatedBy.bind(this);
-    this.handleOnChangeIssueDate = this.handleOnChangeIssueDate.bind(this);
-    this.handleOnChangeDueDate = this.handleOnChangeDueDate.bind(this);
-    this.handleOnChangeAccountNumber =
-      this.handleOnChangeAccountNumber.bind(this);
-
-    this.handleOnChangeIdentifierNumberOfSupplier =
-      this.handleOnChangeIdentifierNumberOfSupplier.bind(this);
-    this.handleOnChangeNameOfSupplier =
-      this.handleOnChangeNameOfSupplier.bind(this);
-    this.handleOnChangeVatIdentifierNumberOfSupplier =
-      this.handleOnChangeVatIdentifierNumberOfSupplier.bind(this);
-    this.handleOnChangeStreetOfSupplier =
-      this.handleOnChangeStreetOfSupplier.bind(this);
-    this.handleOnChangeCityOfSupplier =
-      this.handleOnChangeCityOfSupplier.bind(this);
-    this.handleOnChangeZipCodeOfSupplier =
-      this.handleOnChangeZipCodeOfSupplier.bind(this);
-
-    this.handleOnChangeIdentifierNumberOfClient =
-      this.handleOnChangeIdentifierNumberOfClient.bind(this);
-    this.handleOnChangeNameOfClient =
-      this.handleOnChangeNameOfClient.bind(this);
-    this.handleOnChangeVatIdentifierNumberOfClient =
-      this.handleOnChangeVatIdentifierNumberOfClient.bind(this);
-    this.handleOnChangeStreetOfClient =
-      this.handleOnChangeStreetOfClient.bind(this);
-    this.handleOnChangeCityOfClient =
-      this.handleOnChangeCityOfClient.bind(this);
-    this.handleOnChangeZipCodeOfClient =
-      this.handleOnChangeZipCodeOfClient.bind(this);
-
     this.setStateOfInvoiceItems = this.setStateOfInvoiceItems.bind(this);
-    this.handleOnChangeNote = this.handleOnChangeNote.bind(this);
 
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
@@ -114,87 +73,9 @@ class Form extends Component {
     this.updateStateInvoiceItemPrice = this.updateStateInvoiceItemPrice.bind(this); 
     this.updateStateInvoiceItemTotalPrice = this.updateStateInvoiceItemTotalPrice.bind(this);
     
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
-  }
+    
 
-  handleOnChangeInvoiceNumber(event) {
-    this.setState({ invoiceNumber: event.target.value });
-  }
-
-  handleOnChangeRegistrationNumber(event) {
-    this.setState({ registrationNumber: event.target.value });
-  }
-
-  handleOnChangeVariableSymbol(event) {
-    this.setState({ variableSymbol: event.target.value });
-  }
-
-  handleOnChangeConstantSymbol(event) {
-    this.setState({ constantSymbol: event.target.value });
-  }
-
-  handleOnChangeCreatedBy(event) {
-    this.setState({ createdBy: event.target.value });
-  }
-
-  handleOnChangeIssueDate(event) {
-    this.setState({ issueDate: event.target.value });
-  }
-
-  handleOnChangeDueDate(event) {
-    this.setState({ dueDate: event.target.value });
-  }
-
-  handleOnChangeAccountNumber(event) {
-    this.setState({ accountNumber: event.target.value });
-  }
-
-  handleOnChangeIdentifierNumberOfSupplier(event) {
-    this.setState({ identifierNumberOfSupplier: event.target.value });
-  }
-
-  handleOnChangeNameOfSupplier(event) {
-    this.setState({ nameOfSupplier: event.target.value });
-  }
-
-  handleOnChangeVatIdentifierNumberOfSupplier(event) {
-    this.setState({ vatIdentifierNumberOfSupplier: event.target.value });
-  }
-
-  handleOnChangeStreetOfSupplier(event) {
-    this.setState({ streetOfSupplier: event.target.value });
-  }
-
-  handleOnChangeCityOfSupplier(event) {
-    this.setState({ cityOfSupplier: event.target.value });
-  }
-
-  handleOnChangeZipCodeOfSupplier(event) {
-    this.setState({ zipCodeOfSupplier: event.target.value });
-  }
-
-  handleOnChangeIdentifierNumberOfClient(event) {
-    this.setState({ identifierNumberOfClient: event.target.value });
-  }
-
-  handleOnChangeNameOfClient(event) {
-    this.setState({ nameOfClient: event.target.value });
-  }
-
-  handleOnChangeVatIdentifierNumberOfClient(event) {
-    this.setState({ vatIdentifierNumberOfClient: event.target.value });
-  }
-
-  handleOnChangeStreetOfClient(event) {
-    this.setState({ streetOfClient: event.target.value });
-  }
-
-  handleOnChangeCityOfClient(event) {
-    this.setState({ cityOfClient: event.target.value });
-  }
-
-  handleOnChangeZipCodeOfClient(event) {
-    this.setState({ zipCodeOfClient: event.target.value });
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   setStateOfInvoiceItems(items) {
@@ -275,9 +156,6 @@ class Form extends Component {
     });
   }
 
-  handleOnSubmit() {
-
-  }
 
   createAndDownloadPdf = () => {
     axios.post('/create-pdf', this.state)
@@ -289,119 +167,146 @@ class Form extends Component {
       })
   }
 
+  handleOnChange(event) {
+    const { name, value } = event.target;
+    this.setState({ ...this.state,
+      [name]: value
+    });
+  }
+
   render() {
     const { t } = this.props;
     const total = this.calculationTotal();
     return (
-      <form onSubmit={this.handleOnSubmit}>
+      <form>
         <h2>{t('Issuance of a new invoice')}</h2>
 
         <Section header={t('Basic data')}>
           <NumberInput
             label={t('Invoice number')}
+            name={'invoiceNumber'}
             value={this.state.invoiceNumber}
-            handler={this.handleOnChangeInvoiceNumber}
+            handler={this.handleOnChange}
           />
           <NumberInput
             label={t('Registration number')}
+            name={'registrationNumber'}
             value={this.state.registrationNumber}
-            handler={this.handleOnChangeRegistrationNumber}
+            handler={this.handleOnChange}
           />
           <NumberInput
             label={t('Variable symbol')}
+            name={'variableSymbol'}
             value={this.state.variableSymbol}
-            handler={this.handleOnChangeVariableSymbol}
+            handler={this.handleOnChange}
           />
           <NumberInput
             label={t('Constant symbol')}
+            name={'constantSymbol'}
             value={this.state.constantSymbol}
-            handler={this.handleOnChangeConstantSymbol}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Created by')}
-            value={this.state.createdBy || ""}
-            handler={this.handleOnChangeCreatedBy}
+            name={'createdBy'}
+            value={this.state.createdBy}
+            handler={this.handleOnChange}
           />
           <DateInput
             label={t('Date of Issue')}
+            name={'issueDate'}
             value={this.state.issueDate}
-            handler={this.handleOnChangeIssueDate}
+            handler={this.handleOnChange}
           />
           <DateInput
             label={t('Due by')}
+            name={'dueDate'}
             value={this.state.dueDate}
-            handler={this.handleOnChangeDueDate}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Account number')}
-            value={this.state.accountNumber || ""}
-            handler={this.handleOnChangeAccountNumber}
+            name={'accountNumber'}
+            value={this.state.accountNumber}
+            handler={this.handleOnChange}
           />
         </Section>
 
         <Section header={t('Supplier')}>
           <NumberInput
             label={t('CIN')}
+            name={'identifierNumberOfSupplier'}
             value={this.state.identifierNumberOfSupplier}
-            handler={this.handleOnChangeIdentifierNumberOfSupplier}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Name')}
-            value={this.state.nameOfSupplier || ""}
-            handler={this.handleOnChangeNameOfSupplier}
+            name={'nameOfSupplier'}
+            value={this.state.nameOfSupplier}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('VAT')}
-            value={this.state.vatIdentifierNumberOfSupplier || ""}
-            handler={this.handleOnChangeVatIdentifierNumberOfSupplier}
+            name={'vatIdentifierNumberOfSupplier'}
+            value={this.state.vatIdentifierNumberOfSupplier}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Street')}
-            value={this.state.streetOfSupplier || ""}
-            handler={this.handleOnChangeStreetOfSupplier}
+            name={'streetOfSupplier'}
+            value={this.state.streetOfSupplier}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('City')}
-            value={this.state.cityOfSupplier || ""}
-            handler={this.handleOnChangeCityOfSupplier}
+            name={'cityOfSupplier'}
+            value={this.state.cityOfSupplier}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Zip code')}
-            value={this.state.zipCodeOfSupplier || ""}
-            handler={this.handleOnChangeZipCodeOfSupplier}
+            name={'zipCodeOfSupplier'}
+            value={this.state.zipCodeOfSupplier}
+            handler={this.handleOnChange}
           />
         </Section>
 
         <Section header={t('Customer')}>
           <NumberInput
             label={t('CIN')}
+            name={'identifierNumberOfClient'}
             value={this.state.identifierNumberOfClient}
-            handler={this.handleOnChangeIdentifierNumberOfClient}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Name')}
-            value={this.state.nameOfClient || ""}
-            handler={this.handleOnChangeNameOfClient}
+            name={'nameOfClient'}
+            value={this.state.nameOfClient}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('VAT')}
-            value={this.state.vatIdentifierNumberOfClient || ""}
-            handler={this.handleOnChangeVatIdentifierNumberOfClient}
+            name={'vatIdentifierNumberOfClient'}
+            value={this.state.vatIdentifierNumberOfClient}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Street')}
-            value={this.state.streetOfClient || ""}
-            handler={this.handleOnChangeStreetOfClient}
+            name={'streetOfClient'}
+            value={this.state.streetOfClient}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('City')}
-            value={this.state.cityOfClient || ""}
-            handler={this.handleOnChangeCityOfClient}
+            name={'cityOfClient'}
+            value={this.state.cityOfClient}
+            handler={this.handleOnChange}
           />
           <StringInput
             label={t('Zip code')}
-            value={this.state.zipCodeOfClient || ""}
-            handler={this.handleOnChangeZipCodeOfClient}
+            name={'zipCodeOfClient'}
+            value={this.state.zipCodeOfClient}
+            handler={this.handleOnChange}
           />
         </Section>
 
@@ -420,7 +325,7 @@ class Form extends Component {
 
         <Section header={t('Note')}>
           <div className="note">
-            <textarea value={this.state.note} onChange={this.handleOnChangeNote} />
+            <textarea name={'note'} value={this.state.note} onChange={this.handleOnChange} />
           </div>
         </Section>
 
