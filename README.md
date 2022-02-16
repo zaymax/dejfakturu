@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Create React App 
+
+[![Build and Test](https://github.com/zaymax/dejfakturu/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/zaymax/dejfakturu/actions/workflows/main.yml)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
