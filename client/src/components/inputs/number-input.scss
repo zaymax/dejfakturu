@@ -1,0 +1,9 @@
+//rename in future to number-input or number-field
+.content-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    &__label {
+        float: right;
+    }
+    &__value {}
+}

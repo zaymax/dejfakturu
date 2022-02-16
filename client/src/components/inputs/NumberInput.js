@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./number-input.scss";
 
 export class NumberInput extends Component {
   render() {

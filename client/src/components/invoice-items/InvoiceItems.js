@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { InvoiceItem } from "./InvoiceItem";
@@ -21,6 +20,7 @@ class InvoiceItems extends Component {
           <button
             type="button"
             onClick={() => this.props.handleDeleteItem(item.id)}
+            className="invoice-item__button"
           >
             {t('Delete')}
           </button>
@@ -29,22 +29,22 @@ class InvoiceItems extends Component {
     ));
 
     return (
-      <div>
-        <div className="invoice-item__labels">
-          <div className="invoice-item__label">
+      <div className="invoice-items">
+        <div className="invoice-items__labels">
+          <div className="invoice-items__label">
             <label>{t('Count')}:</label>
           </div>
-          <div className="invoice-item__label">
+          <div className="invoice-items__label">
             <label>{t('Description')}:</label>
           </div>
-          <div className="invoice-item__label">
+          <div className="invoice-items__label">
             <label>{t('Price')}:</label>
           </div>
-          <div className="invoice-item__label">
+          <div className="invoice-items__label">
             <label>{t('Total price')}:</label>
           </div>
         </div>
-        <div className="invoice-items">{items}</div>
+        <div className="invoice-items__items">{items}</div>
         <div className="invoice-items__buttons">
           <button type="button" onClick={this.props.handleAddItem}>
             {t('Add another item')}

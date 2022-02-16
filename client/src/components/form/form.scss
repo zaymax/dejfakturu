@@ -1,3 +1,8 @@
+.invoice-creation-form{
+    background-color: #fff;
+    margin: 0 30%;
+    padding: 10px;
+}
 .section {
     display: block;
     width: 100%;
@@ -25,4 +30,9 @@ h2 {
 
 .note {
     text-align: left;
+}
+
+.multisection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }

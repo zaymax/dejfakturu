@@ -9,8 +9,9 @@ export class Section extends Component {
                 <div className="section__header">
                     <h3>{this.props.header}:</h3>
                 </div>
-                <div className="section__content"></div>
+                <div className="section__content">
                     {this.props.children}
+                </div>
                 <hr />
             </div>
         );

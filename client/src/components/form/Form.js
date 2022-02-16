@@ -178,7 +178,7 @@ class Form extends Component {
     const { t } = this.props;
     const total = this.calculationTotal();
     return (
-      <form>
+      <form className="invoice-creation-form">
         <h2>{t('Issuance of a new invoice')}</h2>
 
         <Section header={t('Basic data')}>
@@ -232,83 +232,85 @@ class Form extends Component {
           />
         </Section>
 
-        <Section header={t('Supplier')}>
-          <NumberInput
-            label={t('CIN')}
-            name={'identifierNumberOfSupplier'}
-            value={this.state.identifierNumberOfSupplier}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Name')}
-            name={'nameOfSupplier'}
-            value={this.state.nameOfSupplier}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('VAT')}
-            name={'vatIdentifierNumberOfSupplier'}
-            value={this.state.vatIdentifierNumberOfSupplier}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Street')}
-            name={'streetOfSupplier'}
-            value={this.state.streetOfSupplier}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('City')}
-            name={'cityOfSupplier'}
-            value={this.state.cityOfSupplier}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Zip code')}
-            name={'zipCodeOfSupplier'}
-            value={this.state.zipCodeOfSupplier}
-            handler={this.handleOnChange}
-          />
-        </Section>
+        <div className="multisection">
+          <Section header={t('Supplier')}>
+            <NumberInput
+              label={t('CIN')}
+              name={'identifierNumberOfSupplier'}
+              value={this.state.identifierNumberOfSupplier}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Name')}
+              name={'nameOfSupplier'}
+              value={this.state.nameOfSupplier}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('VAT')}
+              name={'vatIdentifierNumberOfSupplier'}
+              value={this.state.vatIdentifierNumberOfSupplier}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Street')}
+              name={'streetOfSupplier'}
+              value={this.state.streetOfSupplier}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('City')}
+              name={'cityOfSupplier'}
+              value={this.state.cityOfSupplier}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Zip code')}
+              name={'zipCodeOfSupplier'}
+              value={this.state.zipCodeOfSupplier}
+              handler={this.handleOnChange}
+            />
+          </Section>
 
-        <Section header={t('Customer')}>
-          <NumberInput
-            label={t('CIN')}
-            name={'identifierNumberOfClient'}
-            value={this.state.identifierNumberOfClient}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Name')}
-            name={'nameOfClient'}
-            value={this.state.nameOfClient}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('VAT')}
-            name={'vatIdentifierNumberOfClient'}
-            value={this.state.vatIdentifierNumberOfClient}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Street')}
-            name={'streetOfClient'}
-            value={this.state.streetOfClient}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('City')}
-            name={'cityOfClient'}
-            value={this.state.cityOfClient}
-            handler={this.handleOnChange}
-          />
-          <StringInput
-            label={t('Zip code')}
-            name={'zipCodeOfClient'}
-            value={this.state.zipCodeOfClient}
-            handler={this.handleOnChange}
-          />
-        </Section>
+          <Section header={t('Customer')}>
+            <NumberInput
+              label={t('CIN')}
+              name={'identifierNumberOfClient'}
+              value={this.state.identifierNumberOfClient}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Name')}
+              name={'nameOfClient'}
+              value={this.state.nameOfClient}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('VAT')}
+              name={'vatIdentifierNumberOfClient'}
+              value={this.state.vatIdentifierNumberOfClient}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Street')}
+              name={'streetOfClient'}
+              value={this.state.streetOfClient}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('City')}
+              name={'cityOfClient'}
+              value={this.state.cityOfClient}
+              handler={this.handleOnChange}
+            />
+            <StringInput
+              label={t('Zip code')}
+              name={'zipCodeOfClient'}
+              value={this.state.zipCodeOfClient}
+              handler={this.handleOnChange}
+            />
+          </Section>
+        </div>
 
         <Section header={t('Invoice items')}>
           <InvoiceItems

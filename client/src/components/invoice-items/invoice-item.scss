@@ -1,0 +1,44 @@
+.invoice-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    &__labels {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    &__items {
+
+    }
+
+    &__item {
+
+    }
+
+    // &__item {
+    //     display: grid;
+    //     grid-template-columns: 1fr 1fr;
+    // }
+}
+
+// .invoice-item  {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+// }
+
+.invoice-items__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    .invoice-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+
+
+        &__button {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
