@@ -3,7 +3,12 @@
 
     }
 
-    &__content {
+    &__columns-one-column {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    &__content-two-columns {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }

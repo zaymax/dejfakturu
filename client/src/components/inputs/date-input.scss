@@ -7,6 +7,11 @@
         width: fit-content;
     }
     &__value {
-        width: fit-content;
+        width: 200px
     }
+}
+
+// refactor this later
+input[type=date] {
+    width: 170px;
 }

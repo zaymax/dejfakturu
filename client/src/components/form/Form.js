@@ -95,10 +95,10 @@ class Form extends Component {
     const index = this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
     const items = this.state.invoiceItems.concat({
       id: index,
-      count: 0,
-      description: "Popis",
-      price: 0,
-      totalPrice: 0
+      count: "",
+      description: "",
+      price: "",
+      totalPrice: ""
     });
     this.setState({
       invoiceItems: items
@@ -181,7 +181,7 @@ class Form extends Component {
       <form className="invoice-creation-form">
         <h2>{t('Issuance of a new invoice')}</h2>
 
-        <Section header={t('Basic data')}>
+        <Section header={t('Basic data')} type={"two-columns"}>
           <NumberInput
             label={t('Invoice number')}
             name={'invoiceNumber'}
@@ -326,9 +326,7 @@ class Form extends Component {
         </Section>
 
         <Section header={t('Note')}>
-          <div className="note">
-            <textarea name={'note'} value={this.state.note} onChange={this.handleOnChange} />
-          </div>
+            <textarea name={'note'} value={this.state.note} onChange={this.handleOnChange} className="note"/>
         </Section>
 
         <div className="section-total">

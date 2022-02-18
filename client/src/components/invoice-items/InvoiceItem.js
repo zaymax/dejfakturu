@@ -1,7 +1,8 @@
 import { Component } from "react";
+import { withTranslation } from "react-i18next";
 import "./invoice-item.scss";
 
-export class InvoiceItem extends Component {
+class InvoiceItem extends Component {
   constructor(props) {
     super(props);
 
@@ -50,6 +51,7 @@ export class InvoiceItem extends Component {
   
 
   render() {
+    const { t } = this.props;
     return (
       <div className="invoice-item">
         <input
@@ -57,26 +59,32 @@ export class InvoiceItem extends Component {
           value={this.state.count}
           className="invoice-item__value"
           onChange={this.handleOnChangeCount}
+          placeholder={t("Count")}
         />
         <input
           type="string"
           value={this.state.description}
           className="invoice-item__value"
           onChange={this.handleOnChangeDescription}
+          placeholder={t("Description")}
         />
         <input
           type="number"
           value={this.state.price}
           className="invoice-item__value"
           onChange={this.handleOnChangePrice}
+          placeholder={t("Price")}
         />
         <input
           type="number"
           value={this.state.totalPrice}
           className="invoice-item__value"
           onChange={this.handleOnChangeTotalPrice}
+          placeholder={t("Total price")}
         />
       </div>
     );
   }
 }
+
+export default withTranslation()(InvoiceItem);

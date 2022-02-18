@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { InvoiceItem } from "./InvoiceItem";
+import InvoiceItem from "./InvoiceItem";
 
 class InvoiceItems extends Component {
   render() {
@@ -30,20 +30,6 @@ class InvoiceItems extends Component {
 
     return (
       <div className="invoice-items">
-        <div className="invoice-items__labels">
-          <div className="invoice-items__label">
-            <label>{t('Count')}:</label>
-          </div>
-          <div className="invoice-items__label">
-            <label>{t('Description')}:</label>
-          </div>
-          <div className="invoice-items__label">
-            <label>{t('Price')}:</label>
-          </div>
-          <div className="invoice-items__label">
-            <label>{t('Total price')}:</label>
-          </div>
-        </div>
         <div className="invoice-items__items">{items}</div>
         <div className="invoice-items__buttons">
           <button type="button" onClick={this.props.handleAddItem}>

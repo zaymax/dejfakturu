@@ -9,7 +9,7 @@ export class Section extends Component {
                 <div className="section__header">
                     <h3>{this.props.header}:</h3>
                 </div>
-                <div className="section__content">
+                <div className={"section__content-" + (this.props.type ? this.props.type : "one-column")}>
                     {this.props.children}
                 </div>
                 <hr />
