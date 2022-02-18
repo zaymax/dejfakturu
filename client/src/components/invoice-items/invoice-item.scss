@@ -15,10 +15,13 @@
   .invoice-item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-
+    &__value {
+      margin-right: 5px;
+    }
     &__button {
       display: grid;
       grid-template-columns: 1fr;
     }
   }
 }
+
