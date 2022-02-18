@@ -1,12 +1,13 @@
 import moment from "moment";
 import { Component } from "react";
+import "./date-input.scss";
 
 export class DateInput extends Component {
   render() {
     return (
-      <div className="content-field">
-        <div className="content-field__label">{this.props.label}:</div>
-        <div className="content-field__value">
+      <div className="date-input-field">
+        <div className="date-input-field__label">{this.props.label}:</div>
+        <div className="date-input-field__value">
           <input
             type="date"
             name={this.props.name}

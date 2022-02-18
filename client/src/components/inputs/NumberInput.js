@@ -4,9 +4,9 @@ import "./number-input.scss";
 export class NumberInput extends Component {
   render() {
     return (
-      <div className="content-field">
-        <div className="content-field__label">{this.props.label}:</div>
-        <div className="content-field__value">
+      <div className="number-input-field">
+        <div className="number-input-field__label">{this.props.label}:</div>
+        <div className="number-input-field__value">
           <input
             type="number"
             value={this.props.value || ""}

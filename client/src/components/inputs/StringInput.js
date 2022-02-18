@@ -1,11 +1,12 @@
 import { Component } from "react";
+import "./string-input.scss";
 
 export class StringInput extends Component {
   render() {
     return (
-      <div className="content-field">
-        <div className="content-field__label">{this.props.label}:</div>
-        <div className="content-field__value">
+      <div className="string-input-field">
+        <div className="string-input-field__label">{this.props.label}:</div>
+        <div className="string-input-field__value">
           <input
             type="text"
             value={this.props.value || ""}
