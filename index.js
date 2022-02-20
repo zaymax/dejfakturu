@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pdf = require('html-pdf');
+var pdf = require("pdf-creator-node");
+var fs = require("fs");
 const cors = require('cors');
+var path = require("path");
+var html = fs.readFileSync(path.join(__dirname, "./template/template.html"), "utf8");
 
-const pdfTemplate = require('./template');
 
 const app = express();
 
@@ -13,19 +15,60 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.post('/create-pdf', (req, res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-        if(err) {
-            console.log(err)
-            res.send(Promise.reject());
-        }
 
-        res.send(Promise.resolve());
+
+app.post('/create-pdf', (req, res) => {
+    
+    var document = {
+        html: html,
+        data: {
+            invoiceNumber: req.body.invoiceNumber,
+            registrationNumber: req.body.registrationNumber,
+            issueDate: req.body.issueDate,
+            dueDate: req.body.dueDate,
+            variableSymbol: req.body.variableSymbol,
+            constantSymbol: req.body.constantSymbol,
+            accountNumber: req.body.accountNumber,
+
+            identifierNumberOfSupplier: req.body.identifierNumberOfSupplier,
+            nameOfSupplier: req.body.nameOfSupplier,
+            vatIdentifierNumberOfSupplier: req.body.vatIdentifierNumberOfSupplier,
+            streetOfSupplier: req.body.streetOfSupplier,
+            cityOfSupplier: req.body.cityOfSupplier,
+            zipCodeOfSupplier: req.body.zipCodeOfSupplier,
+
+            identifierNumberOfClient: req.body.identifierNumberOfClient,
+            nameOfClient: req.body.nameOfClient,
+            vatIdentifierNumberOfClient: req.body.vatIdentifierNumberOfClient,
+            streetOfClient: req.body.streetOfClient,
+            cityOfClient: req.body.cityOfClient,
+            zipCodeOfClient: req.body.zipCodeOfClient,
+
+            invoiceItems: req.body.invoiceItems,
+        },
+        path: "./output.pdf",
+        type: "",
+    }
+
+    var options = {
+        format: "A3",
+        orientation: "portrait",
+        border: "10mm",
+    };
+
+    pdf.create(document, options).then((res) => {
+        console.log(res);
+    })
+    .catch((error) => {
+        console.error(error);
     });
+
+    res.send(Promise.resolve());
+
 });
 
 app.get('/fetch-pdf', (req, res) => {
-    res.sendFile(`${__dirname}/result.pdf`)
+    res.sendFile(`${__dirname}/output.pdf`)
 })
 
 if (process.env.NODE_ENV === 'production') {

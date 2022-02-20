@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello world!</title>
+    <style>
+        .identification-row {
+            text-align: right;
+            width: 100%;
+        }
+        .basic-info-section__row {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+        }
+        .supply-client-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .invoice-items-row {
+            width: 100%;
+            margin-top: 20px;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="identification-row">
+        <h2>FAKTURA č.{{invoiceNumber}}</h2>
+        <h3>Evidenční číslo {{registrationNumber}}</h3>
+    </div>
+    <div class="basic-info-section">
+        <div class="basic-info-section__row">
+            <div class="basic-info-section__label">Datum vystavení:</div>
+            <div class="basic-info-section__value">{{issueDate}}</div>
+        </div>
+        <div class="basic-info-section__row">
+            <div class="basic-info-section__label"><strong>Datum splatnosti:</strong></div>
+            <div class="basic-info-section__value">{{dueDate}}</div>
+        </div>
+        <br />
+        <div class="basic-info-section__row">
+            <div class="basic-info-section__label">Variabilní symbol:</div>
+            <div class="basic-info-section__value">{{variableSymbol}}</div>
+        </div>
+        <div class="basic-info-section__row">
+            <div class="basic-info-section__label">Konstantní symbol:</div>
+            <div class="basic-info-section__value">{{constantSymbol}}</div>
+        </div>
+        <div class="basic-info-section__row">
+            <div class="basic-info-section__label">Číslo bankovního účtu:</div>
+            <div class="basic-info-section__value">{{accountNumber}}</div>
+        </div>
+    </div>
+    <div class="supply-client-row">
+        <div class="supply">
+            <h4>ODBĚRATEL</h4>
+            <div>{{identifierNumberOfSupplier}}</div>
+            <div>{{nameOfSupplier}}</div>
+            <div>{{vatIdentifierNumberOfSupplier}}</div>
+            <div>{{streetOfSupplier}}</div>
+            <div>{{cityOfSupplier}}</div>
+            <div>{{zipCodeOfSupplier}}</div>
+        </div>
+        <div class="client">
+            <h4>DODAVATEL</h4>
+            <div>{{identifierNumberOfClient}}</div>
+            <div>{{nameOfClient}}</div>
+            <div>{{vatIdentifierNumberOfClient}}</div>
+            <div>{{streetOfClient}}</div>
+            <div>{{cityOfClient}}</div>
+            <div>{{zipCodeOfClient}}</div>
+        </div>
+    </div>
+    <div class="invoice-items-row">
+        <table>
+            <tr>
+                <td>Počet</td>
+                <td>Popis</td>
+                <td>Jedn. cena</td>
+                <td>Celkem</td>
+            </tr>
+            {{#each invoiceItems}}
+            <tr>
+                <td>{{this.count}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.totalPrice}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+  </body>
+</html>
