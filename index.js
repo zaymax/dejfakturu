@@ -18,11 +18,33 @@ app.use(bodyParser.json());
 
 
 app.post('/create-pdf', (req, res) => {
-    console.log(req.body.invoiceItems)
+    
     var document = {
         html: html,
         data: {
-          invoiceItems: req.body.invoiceItems,
+            invoiceNumber: req.body.invoiceNumber,
+            registrationNumber: req.body.registrationNumber,
+            issueDate: req.body.issueDate,
+            dueDate: req.body.dueDate,
+            variableSymbol: req.body.variableSymbol,
+            constantSymbol: req.body.constantSymbol,
+            accountNumber: req.body.accountNumber,
+
+            identifierNumberOfSupplier: req.body.identifierNumberOfSupplier,
+            nameOfSupplier: req.body.nameOfSupplier,
+            vatIdentifierNumberOfSupplier: req.body.vatIdentifierNumberOfSupplier,
+            streetOfSupplier: req.body.streetOfSupplier,
+            cityOfSupplier: req.body.cityOfSupplier,
+            zipCodeOfSupplier: req.body.zipCodeOfSupplier,
+
+            identifierNumberOfClient: req.body.identifierNumberOfClient,
+            nameOfClient: req.body.nameOfClient,
+            vatIdentifierNumberOfClient: req.body.vatIdentifierNumberOfClient,
+            streetOfClient: req.body.streetOfClient,
+            cityOfClient: req.body.cityOfClient,
+            zipCodeOfClient: req.body.zipCodeOfClient,
+
+            invoiceItems: req.body.invoiceItems,
         },
         path: "./output.pdf",
         type: "",
