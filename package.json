@@ -4,20 +4,20 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "build": "cd client && npm run build",
-      "install-client": "cd client && npm install",
-      "heroku-postbuild": "npm run install-client && npm run build",
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node index.js",
-      "client": "cd client && npm start",
-      "dev": "concurrently -n 'server,client' -c 'red,green'  \"nodemon server.js\" \"npm run client\""
+        "build": "cd client && npm run build",
+        "install-client": "cd client && npm install",
+        "heroku-postbuild": "npm run install-client && npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js",
+        "client": "cd client && npm start",
+        "dev": "concurrently -n 'server,client' -c 'red,green'  \"nodemon server.js\" \"npm run client\""
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "body-parser": "^1.18.3",
-      "cors": "^2.8.5",
-      "express": "^4.16.4",
-      "html-pdf": "^2.2.0"
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^4.16.4",
+        "pdf-creator-node": "^2.3.4"
     }
-  }
+}
