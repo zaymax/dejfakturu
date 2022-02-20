@@ -63,6 +63,8 @@ app.post('/create-pdf', (req, res) => {
         console.error(error);
     });
 
+    res.send(Promise.resolve());
+
 });
 
 app.get('/fetch-pdf', (req, res) => {
