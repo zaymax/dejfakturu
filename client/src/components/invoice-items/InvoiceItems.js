@@ -12,9 +12,13 @@ class InvoiceItems extends Component {
           onDelete={this.props.handleDeleteItem}
           id={item.id}
           updateStateInvoiceItemCount={this.props.updateStateInvoiceItemCount}
-          updateStateInvoiceItemDescription={this.props.updateStateInvoiceItemDescription}
+          updateStateInvoiceItemDescription={
+            this.props.updateStateInvoiceItemDescription
+          }
           updateStateInvoiceItemPrice={this.props.updateStateInvoiceItemPrice}
-          updateStateInvoiceItemTotalPrice={this.props.updateStateInvoiceItemTotalPrice}
+          updateStateInvoiceItemTotalPrice={
+            this.props.updateStateInvoiceItemTotalPrice
+          }
         />
         {this.props.items.length > 1 && (
           <button
@@ -22,7 +26,7 @@ class InvoiceItems extends Component {
             onClick={() => this.props.handleDeleteItem(item.id)}
             className="invoice-item__button"
           >
-            {t('Delete')}
+            {t("Delete")}
           </button>
         )}
       </div>
@@ -33,7 +37,7 @@ class InvoiceItems extends Component {
         <div className="invoice-items__items">{items}</div>
         <div className="invoice-items__buttons">
           <button type="button" onClick={this.props.handleAddItem}>
-            {t('Add another item')}
+            {t("Add another item")}
           </button>
         </div>
       </div>

@@ -1,15 +1,14 @@
 .section {
-    &__header {
+  &__header {
+  }
 
-    }
+  &__columns-one-column {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
-    &__columns-one-column {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    &__content-two-columns {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+  &__content-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }

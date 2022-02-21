@@ -4,8 +4,8 @@ import { NumberInput } from "../inputs/NumberInput";
 import { StringInput } from "../inputs/StringInput";
 import InvoiceItems from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
-import axios from 'axios';
-import { saveAs } from 'file-saver';
+import axios from "axios";
+import { saveAs } from "file-saver";
 import "./form.scss";
 import { withTranslation } from "react-i18next";
 
@@ -68,12 +68,14 @@ class Form extends Component {
 
     this.calculationTotal = this.calculationTotal.bind(this);
 
-    this.updateStateInvoiceItemCount = this.updateStateInvoiceItemCount.bind(this);
-    this.updateStateInvoiceItemDescription = this.updateStateInvoiceItemDescription.bind(this);
-    this.updateStateInvoiceItemPrice = this.updateStateInvoiceItemPrice.bind(this); 
-    this.updateStateInvoiceItemTotalPrice = this.updateStateInvoiceItemTotalPrice.bind(this);
-    
-    
+    this.updateStateInvoiceItemCount =
+      this.updateStateInvoiceItemCount.bind(this);
+    this.updateStateInvoiceItemDescription =
+      this.updateStateInvoiceItemDescription.bind(this);
+    this.updateStateInvoiceItemPrice =
+      this.updateStateInvoiceItemPrice.bind(this);
+    this.updateStateInvoiceItemTotalPrice =
+      this.updateStateInvoiceItemTotalPrice.bind(this);
 
     this.handleOnChange = this.handleOnChange.bind(this);
   }
@@ -85,24 +87,25 @@ class Form extends Component {
   }
 
   handleDelete(itemId) {
-    const items = this.state.invoiceItems.filter(item => item.id !== itemId);
+    const items = this.state.invoiceItems.filter((item) => item.id !== itemId);
     this.setState({
-      invoiceItems: items
-    })
+      invoiceItems: items,
+    });
   }
 
   handleAddItem() {
-    const index = this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
+    const index =
+      this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
     const items = this.state.invoiceItems.concat({
       id: index,
       count: "",
       description: "",
       price: "",
-      totalPrice: ""
+      totalPrice: "",
     });
     this.setState({
-      invoiceItems: items
-    })
+      invoiceItems: items,
+    });
   }
 
   handleOnChangeNote(event) {
@@ -115,63 +118,61 @@ class Form extends Component {
     const items = this.state.invoiceItems;
     let total = 0;
     for (let i = 0; i < items.length; i++) {
-      total += items[i].count * items[i].price;  
+      total += items[i].count * items[i].price;
     }
     return total;
   }
 
   updateStateInvoiceItemCount(value, id) {
     const items = this.state.invoiceItems;
-    const indexItem = items.findIndex(e => e.id === id);
+    const indexItem = items.findIndex((e) => e.id === id);
     items[indexItem].count = value;
     this.setState({
-      invoiceItems: items
+      invoiceItems: items,
     });
   }
 
   updateStateInvoiceItemDescription(value, id) {
     const items = this.state.invoiceItems;
-    const indexItem = items.findIndex(e => e.id === id);
+    const indexItem = items.findIndex((e) => e.id === id);
     items[indexItem].description = value;
     this.setState({
-      invoiceItems: items
+      invoiceItems: items,
     });
   }
 
   updateStateInvoiceItemPrice(value, id) {
     const items = this.state.invoiceItems;
-    const indexItem = items.findIndex(e => e.id === id);
+    const indexItem = items.findIndex((e) => e.id === id);
     items[indexItem].price = value;
     this.setState({
-      invoiceItems: items
+      invoiceItems: items,
     });
   }
 
   updateStateInvoiceItemTotalPrice(value, id) {
     const items = this.state.invoiceItems;
-    const indexItem = items.findIndex(e => e.id === id);
+    const indexItem = items.findIndex((e) => e.id === id);
     items[indexItem].totalPrice = value;
     this.setState({
-      invoiceItems: items
+      invoiceItems: items,
     });
   }
 
-
   createAndDownloadPdf = () => {
-    axios.post('/create-pdf', this.state)
-      .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
+    axios
+      .post("/create-pdf", this.state)
+      .then(() => axios.get("fetch-pdf", { responseType: "blob" }))
       .then((res) => {
-        const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        const pdfBlob = new Blob([res.data], { type: "application/pdf" });
 
-        saveAs(pdfBlob, 'newPdf.pdf');
-      })
-  }
+        saveAs(pdfBlob, "newPdf.pdf");
+      });
+  };
 
   handleOnChange(event) {
     const { name, value } = event.target;
-    this.setState({ ...this.state,
-      [name]: value
-    });
+    this.setState({ ...this.state, [name]: value });
   }
 
   render() {
@@ -179,163 +180,176 @@ class Form extends Component {
     const total = this.calculationTotal();
     return (
       <form className="invoice-creation-form">
-        <h2>{t('Issuance of a new invoice')}</h2>
+        <h2>{t("Issuance of a new invoice")}</h2>
 
-        <Section header={t('Basic data')} type={"two-columns"}>
+        <Section header={t("Basic data")} type={"two-columns"}>
           <NumberInput
-            label={t('Invoice number')}
-            name={'invoiceNumber'}
+            label={t("Invoice number")}
+            name={"invoiceNumber"}
             value={this.state.invoiceNumber}
             handler={this.handleOnChange}
           />
           <NumberInput
-            label={t('Registration number')}
-            name={'registrationNumber'}
+            label={t("Registration number")}
+            name={"registrationNumber"}
             value={this.state.registrationNumber}
             handler={this.handleOnChange}
           />
           <NumberInput
-            label={t('Variable symbol')}
-            name={'variableSymbol'}
+            label={t("Variable symbol")}
+            name={"variableSymbol"}
             value={this.state.variableSymbol}
             handler={this.handleOnChange}
           />
           <NumberInput
-            label={t('Constant symbol')}
-            name={'constantSymbol'}
+            label={t("Constant symbol")}
+            name={"constantSymbol"}
             value={this.state.constantSymbol}
             handler={this.handleOnChange}
           />
           <StringInput
-            label={t('Created by')}
-            name={'createdBy'}
+            label={t("Created by")}
+            name={"createdBy"}
             value={this.state.createdBy}
             handler={this.handleOnChange}
           />
           <DateInput
-            label={t('Date of Issue')}
-            name={'issueDate'}
+            label={t("Date of Issue")}
+            name={"issueDate"}
             value={this.state.issueDate}
             handler={this.handleOnChange}
           />
           <DateInput
-            label={t('Due by')}
-            name={'dueDate'}
+            label={t("Due by")}
+            name={"dueDate"}
             value={this.state.dueDate}
             handler={this.handleOnChange}
           />
           <StringInput
-            label={t('Account number')}
-            name={'accountNumber'}
+            label={t("Account number")}
+            name={"accountNumber"}
             value={this.state.accountNumber}
             handler={this.handleOnChange}
           />
         </Section>
 
         <div className="multisection">
-          <Section header={t('Supplier')}>
+          <Section header={t("Supplier")}>
             <NumberInput
-              label={t('CIN')}
-              name={'identifierNumberOfSupplier'}
+              label={t("CIN")}
+              name={"identifierNumberOfSupplier"}
               value={this.state.identifierNumberOfSupplier}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Name')}
-              name={'nameOfSupplier'}
+              label={t("Name")}
+              name={"nameOfSupplier"}
               value={this.state.nameOfSupplier}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('VAT')}
-              name={'vatIdentifierNumberOfSupplier'}
+              label={t("VAT")}
+              name={"vatIdentifierNumberOfSupplier"}
               value={this.state.vatIdentifierNumberOfSupplier}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Street')}
-              name={'streetOfSupplier'}
+              label={t("Street")}
+              name={"streetOfSupplier"}
               value={this.state.streetOfSupplier}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('City')}
-              name={'cityOfSupplier'}
+              label={t("City")}
+              name={"cityOfSupplier"}
               value={this.state.cityOfSupplier}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Zip code')}
-              name={'zipCodeOfSupplier'}
+              label={t("Zip code")}
+              name={"zipCodeOfSupplier"}
               value={this.state.zipCodeOfSupplier}
               handler={this.handleOnChange}
             />
           </Section>
 
-          <Section header={t('Customer')}>
+          <Section header={t("Customer")}>
             <NumberInput
-              label={t('CIN')}
-              name={'identifierNumberOfClient'}
+              label={t("CIN")}
+              name={"identifierNumberOfClient"}
               value={this.state.identifierNumberOfClient}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Name')}
-              name={'nameOfClient'}
+              label={t("Name")}
+              name={"nameOfClient"}
               value={this.state.nameOfClient}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('VAT')}
-              name={'vatIdentifierNumberOfClient'}
+              label={t("VAT")}
+              name={"vatIdentifierNumberOfClient"}
               value={this.state.vatIdentifierNumberOfClient}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Street')}
-              name={'streetOfClient'}
+              label={t("Street")}
+              name={"streetOfClient"}
               value={this.state.streetOfClient}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('City')}
-              name={'cityOfClient'}
+              label={t("City")}
+              name={"cityOfClient"}
               value={this.state.cityOfClient}
               handler={this.handleOnChange}
             />
             <StringInput
-              label={t('Zip code')}
-              name={'zipCodeOfClient'}
+              label={t("Zip code")}
+              name={"zipCodeOfClient"}
               value={this.state.zipCodeOfClient}
               handler={this.handleOnChange}
             />
           </Section>
         </div>
 
-        <Section header={t('Invoice items')}>
+        <Section header={t("Invoice items")}>
           <InvoiceItems
             items={this.state.invoiceItems}
             setStateOfInvoiceItems={this.setStateOfInvoiceItems}
             handleDeleteItem={this.handleDelete}
             handleAddItem={this.handleAddItem}
             updateStateInvoiceItemCount={this.updateStateInvoiceItemCount}
-            updateStateInvoiceItemDescription={this.updateStateInvoiceItemDescription}
+            updateStateInvoiceItemDescription={
+              this.updateStateInvoiceItemDescription
+            }
             updateStateInvoiceItemPrice={this.updateStateInvoiceItemPrice}
-            updateStateInvoiceItemTotalPrice={this.updateStateInvoiceItemTotalPrice}
+            updateStateInvoiceItemTotalPrice={
+              this.updateStateInvoiceItemTotalPrice
+            }
           />
         </Section>
 
-        <Section header={t('Note')}>
-            <textarea name={'note'} value={this.state.note} onChange={this.handleOnChange} className="note"/>
+        <Section header={t("Note")}>
+          <textarea
+            name={"note"}
+            value={this.state.note}
+            onChange={this.handleOnChange}
+            className="note"
+          />
         </Section>
 
         <div className="section-total">
-          <div className="section-total__withoutVat"><p>{t('Total price')} - {total}</p></div>
+          <div className="section-total__withoutVat">
+            <p>
+              {t("Total price")} - {total}
+            </p>
+          </div>
         </div>
 
         <button type="button" onClick={this.createAndDownloadPdf}>
-            {t('Generate PDF')}
-          </button>
+          {t("Generate PDF")}
+        </button>
       </form>
     );
   }

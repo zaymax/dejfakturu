@@ -11,7 +11,11 @@ export class DateInput extends Component {
           <input
             type="date"
             name={this.props.name}
-            value={this.props.value ? moment(new Date(this.props.value)).format("YYYY-MM-DD") : ""}
+            value={
+              this.props.value
+                ? moment(new Date(this.props.value)).format("YYYY-MM-DD")
+                : ""
+            }
             onChange={this.props.handler}
           />
         </div>
