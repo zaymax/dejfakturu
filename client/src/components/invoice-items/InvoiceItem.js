@@ -11,7 +11,7 @@ class InvoiceItem extends Component {
       count: this.props.item.count,
       description: this.props.item.description,
       price: this.props.item.price,
-      totalPrice: this.props.item.totalPrice
+      totalPrice: this.props.item.totalPrice,
     };
 
     this.handleOnChangeCount = this.handleOnChangeCount.bind(this);
@@ -22,33 +22,43 @@ class InvoiceItem extends Component {
 
   handleOnChangeCount(event) {
     this.setState({
-      count: Number(event.target.value)
+      count: Number(event.target.value),
     });
-    this.props.updateStateInvoiceItemCount(Number(event.target.value), this.state.id);
+    this.props.updateStateInvoiceItemCount(
+      Number(event.target.value),
+      this.state.id
+    );
   }
 
   handleOnChangeDescription(event) {
     this.setState({
-      description: event.target.value
+      description: event.target.value,
     });
-    this.props.updateStateInvoiceItemDescription(event.target.value, this.state.id);
+    this.props.updateStateInvoiceItemDescription(
+      event.target.value,
+      this.state.id
+    );
   }
 
   handleOnChangePrice(event) {
     this.setState({
-      price: Number(event.target.value)
+      price: Number(event.target.value),
     });
-    this.props.updateStateInvoiceItemPrice(Number(event.target.value), this.state.id);
+    this.props.updateStateInvoiceItemPrice(
+      Number(event.target.value),
+      this.state.id
+    );
   }
 
   handleOnChangeTotalPrice(event) {
     this.setState({
-      totalPrice: Number(event.target.value)
+      totalPrice: Number(event.target.value),
     });
-    this.props.updateStateInvoiceItemTotalPrice(Number(event.target.value), this.state.id);
+    this.props.updateStateInvoiceItemTotalPrice(
+      Number(event.target.value),
+      this.state.id
+    );
   }
-
-  
 
   render() {
     const { t } = this.props;

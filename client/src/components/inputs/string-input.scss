@@ -1,13 +1,13 @@
 .string-input-field {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: fit-content;
+  margin-bottom: 5px;
+  &__label {
+    float: right;
     width: fit-content;
-    margin-bottom: 5px;
-    &__label {
-        float: right;
-        width: fit-content;
-    }
-    &__value {
-        width: 200px
-    }
+  }
+  &__value {
+    width: 200px;
+  }
 }
