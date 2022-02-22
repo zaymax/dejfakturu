@@ -12,6 +12,7 @@ export class NumberInput extends Component {
             value={this.props.value || ""}
             onChange={this.props.handler}
             name={this.props.name}
+            placeholder={this.props.placeholder}
           />
         </div>
       </div>
