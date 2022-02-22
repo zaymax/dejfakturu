@@ -18,44 +18,29 @@ class Form extends Component {
       registrationNumber: null,
       variableSymbol: null,
       constantSymbol: null,
-      createdBy: "Admin",
-      issueDate: new Date(),
+      createdBy: "",
+      issueDate: null,
       dueDate: null,
-      accountNumber: "285969/0800",
+      accountNumber: "",
 
       //Supplier
       identifierNumberOfSupplier: null,
-      nameOfSupplier: "CCC",
-      vatIdentifierNumberOfSupplier: "CZ545144545",
-      streetOfSupplier: "Streeetttt",
-      cityOfSupplier: "City",
-      zipCodeOfSupplier: "180 00",
+      nameOfSupplier: "",
+      vatIdentifierNumberOfSupplier: "",
+      streetOfSupplier: "",
+      cityOfSupplier: "",
+      zipCodeOfSupplier: "",
 
       //Client
       identifierNumberOfClient: null,
-      nameOfClient: "Admin",
-      vatIdentifierNumberOfClient: "CZ4444444",
-      streetOfClient: "Street admin",
-      cityOfClient: "City admin",
-      zipCodeOfClient: "41515",
+      nameOfClient: "",
+      vatIdentifierNumberOfClient: "",
+      streetOfClient: "",
+      cityOfClient: "",
+      zipCodeOfClient: "",
 
       //Invoice items:
-      invoiceItems: [
-        {
-          id: 0,
-          count: 4,
-          description: "IT Sluzby",
-          price: 100,
-          totalPrice: 400,
-        },
-        {
-          id: 1,
-          count: 1,
-          description: "IT Sluzby",
-          price: 100,
-          totalPrice: 100,
-        },
-      ],
+      invoiceItems: [],
 
       //Note
       note: "",
