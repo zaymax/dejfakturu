@@ -1,3 +1,4 @@
+import "../../styles/reset.scss"
 import "./App.scss";
 import Form from "../form/Form.js";
 
