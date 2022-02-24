@@ -8,7 +8,7 @@ function App() {
       <div>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Homepage</Link>
           </li>
           <li>
             <Link to="/create-invoice">Create invoice</Link>
