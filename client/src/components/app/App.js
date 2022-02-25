@@ -1,6 +1,7 @@
 import "./App.scss";
 import Form from "../form/Form.js";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { Home } from "../homepage/Homepage";
 
 function App() {
   return (
@@ -24,8 +25,5 @@ function App() {
   );
 }
 
-function Home() {
-  return <h2>Homepage</h2>;
-}
 
 export default App;
