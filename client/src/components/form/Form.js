@@ -78,10 +78,12 @@ class Form extends Component {
     });
   }
 
-  // Fix this method, this method has bug with id.
   handleAddItem() {
     const index =
-      this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
+      this.state.invoiceItems.length > 0
+        ? this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1
+        : "0";
+
     const items = this.state.invoiceItems.concat({
       id: index,
       count: "",
