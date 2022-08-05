@@ -11,30 +11,33 @@ import { Dashboard } from "../../pages/dashboard/Dashboard";
 function App() {
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Homepage</Link>
-          </li>
-          <li>
-            <Link to="/create-invoice">Create invoice</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/prices">Prices</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
+      <div className="">
+        <div className="menu">
+          <h1 className="menu__logo">Dejfakturu.cz</h1>
+          <ul className="menu__links">
+            <li className="menu__link">
+              <Link to="/">Homepage</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/create-invoice">Create invoice</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/about">About</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/prices">Prices</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/register">Register</Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          </ul>
+        </div>
 
         <Routes>
           <Route path="/create-invoice" element={<Form />} />
