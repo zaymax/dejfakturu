@@ -36,9 +36,18 @@ body {
 
   &__link {
     margin-right: 10px;
-    a {
-      text-decoration: none;
+    &-text {
       color: black;
     }
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__button {
+    background-color: blue;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
   }
 }

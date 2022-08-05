@@ -16,25 +16,37 @@ function App() {
           <h1 className="menu__logo">Dejfakturu.cz</h1>
           <ul className="menu__links">
             <li className="menu__link">
-              <Link to="/">Homepage</Link>
+              <Link to="/" className="menu__link-text">
+                Homepage
+              </Link>
             </li>
             <li className="menu__link">
-              <Link to="/create-invoice">Create invoice</Link>
+              <Link to="/create-invoice" className="menu__link-text">
+                Create invoice
+              </Link>
             </li>
             <li className="menu__link">
-              <Link to="/about">About</Link>
+              <Link to="/about" className="menu__link-text">
+                About
+              </Link>
             </li>
             <li className="menu__link">
-              <Link to="/prices">Prices</Link>
+              <Link to="/prices" className="menu__link-text">
+                Prices
+              </Link>
             </li>
             <li className="menu__link">
-              <Link to="/login">Login</Link>
+              <Link to="/dashboard" className="menu__link-text">
+                Dashboard
+              </Link>
+            </li>
+            <li className="menu__link">
+              <Link to="/login" className="menu__button">
+                Login
+              </Link>
             </li>
             <li className="menu__link">
               <Link to="/register">Register</Link>
-            </li>
-            <li className="menu__link">
-              <Link to="/dashboard">Dashboard</Link>
             </li>
           </ul>
         </div>
