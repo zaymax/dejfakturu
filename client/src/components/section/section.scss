@@ -1,6 +1,8 @@
 .section {
   &__header {
     text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 1.467rem;
   }
 
   &__columns-one-column {
@@ -11,5 +13,6 @@
   &__content-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
 }

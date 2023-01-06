@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: fit-content;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  align-items: center;
   &__label {
     float: right;
     width: fit-content;
