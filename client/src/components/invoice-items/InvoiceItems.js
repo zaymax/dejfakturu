@@ -20,7 +20,7 @@ class InvoiceItems extends Component {
             this.props.updateStateInvoiceItemTotalPrice
           }
         />
-        {this.props.items.length > 1 && (
+        {this.props.items.length > 0 && (
           <button
             type="button"
             onClick={() => this.props.handleDeleteItem(item.id)}

@@ -18,44 +18,29 @@ class Form extends Component {
       registrationNumber: null,
       variableSymbol: null,
       constantSymbol: null,
-      createdBy: "Admin",
-      issueDate: new Date(),
+      createdBy: "",
+      issueDate: null,
       dueDate: null,
-      accountNumber: "285969/0800",
+      accountNumber: "",
 
       //Supplier
       identifierNumberOfSupplier: null,
-      nameOfSupplier: "CCC",
-      vatIdentifierNumberOfSupplier: "CZ545144545",
-      streetOfSupplier: "Streeetttt",
-      cityOfSupplier: "City",
-      zipCodeOfSupplier: "180 00",
+      nameOfSupplier: "",
+      vatIdentifierNumberOfSupplier: "",
+      streetOfSupplier: "",
+      cityOfSupplier: "",
+      zipCodeOfSupplier: "",
 
       //Client
       identifierNumberOfClient: null,
-      nameOfClient: "Admin",
-      vatIdentifierNumberOfClient: "CZ4444444",
-      streetOfClient: "Street admin",
-      cityOfClient: "City admin",
-      zipCodeOfClient: "41515",
+      nameOfClient: "",
+      vatIdentifierNumberOfClient: "",
+      streetOfClient: "",
+      cityOfClient: "",
+      zipCodeOfClient: "",
 
       //Invoice items:
-      invoiceItems: [
-        {
-          id: 0,
-          count: 4,
-          description: "IT Sluzby",
-          price: 100,
-          totalPrice: 400,
-        },
-        {
-          id: 1,
-          count: 1,
-          description: "IT Sluzby",
-          price: 100,
-          totalPrice: 100,
-        },
-      ],
+      invoiceItems: [],
 
       //Note
       note: "",
@@ -95,7 +80,10 @@ class Form extends Component {
 
   handleAddItem() {
     const index =
-      this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1;
+      this.state.invoiceItems.length > 0
+        ? this.state.invoiceItems[this.state.invoiceItems.length - 1].id + 1
+        : "0";
+
     const items = this.state.invoiceItems.concat({
       id: index,
       count: "",
@@ -188,30 +176,35 @@ class Form extends Component {
             name={"invoiceNumber"}
             value={this.state.invoiceNumber}
             handler={this.handleOnChange}
+            placeholder={t("Invoice number")}
           />
           <NumberInput
             label={t("Registration number")}
             name={"registrationNumber"}
             value={this.state.registrationNumber}
             handler={this.handleOnChange}
+            placeholder={t("Registration number")}
           />
           <NumberInput
             label={t("Variable symbol")}
             name={"variableSymbol"}
             value={this.state.variableSymbol}
             handler={this.handleOnChange}
+            placeholder={t("Variable symbol")}
           />
           <NumberInput
             label={t("Constant symbol")}
             name={"constantSymbol"}
             value={this.state.constantSymbol}
             handler={this.handleOnChange}
+            placeholder={t("Constant symbol")}
           />
           <StringInput
             label={t("Created by")}
             name={"createdBy"}
             value={this.state.createdBy}
             handler={this.handleOnChange}
+            placeholder={t("Created by")}
           />
           <DateInput
             label={t("Date of Issue")}
@@ -230,6 +223,7 @@ class Form extends Component {
             name={"accountNumber"}
             value={this.state.accountNumber}
             handler={this.handleOnChange}
+            placeholder={t("Account number")}
           />
         </Section>
 
@@ -240,36 +234,42 @@ class Form extends Component {
               name={"identifierNumberOfSupplier"}
               value={this.state.identifierNumberOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("CIN")}
             />
             <StringInput
               label={t("Name")}
               name={"nameOfSupplier"}
               value={this.state.nameOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("Name")}
             />
             <StringInput
               label={t("VAT")}
               name={"vatIdentifierNumberOfSupplier"}
               value={this.state.vatIdentifierNumberOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("VAT")}
             />
             <StringInput
               label={t("Street")}
               name={"streetOfSupplier"}
               value={this.state.streetOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("Street")}
             />
             <StringInput
               label={t("City")}
               name={"cityOfSupplier"}
               value={this.state.cityOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("City")}
             />
             <StringInput
               label={t("Zip code")}
               name={"zipCodeOfSupplier"}
               value={this.state.zipCodeOfSupplier}
               handler={this.handleOnChange}
+              placeholder={t("Zip code")}
             />
           </Section>
 
@@ -279,36 +279,42 @@ class Form extends Component {
               name={"identifierNumberOfClient"}
               value={this.state.identifierNumberOfClient}
               handler={this.handleOnChange}
+              placeholder={t("CIN")}
             />
             <StringInput
               label={t("Name")}
               name={"nameOfClient"}
               value={this.state.nameOfClient}
               handler={this.handleOnChange}
+              placeholder={t("Name")}
             />
             <StringInput
               label={t("VAT")}
               name={"vatIdentifierNumberOfClient"}
               value={this.state.vatIdentifierNumberOfClient}
               handler={this.handleOnChange}
+              placeholder={t("VAT")}
             />
             <StringInput
               label={t("Street")}
               name={"streetOfClient"}
               value={this.state.streetOfClient}
               handler={this.handleOnChange}
+              placeholder={t("Street")}
             />
             <StringInput
               label={t("City")}
               name={"cityOfClient"}
               value={this.state.cityOfClient}
               handler={this.handleOnChange}
+              placeholder={t("City")}
             />
             <StringInput
               label={t("Zip code")}
               name={"zipCodeOfClient"}
               value={this.state.zipCodeOfClient}
               handler={this.handleOnChange}
+              placeholder={t("Zip code")}
             />
           </Section>
         </div>
@@ -336,6 +342,7 @@ class Form extends Component {
             value={this.state.note}
             onChange={this.handleOnChange}
             className="note"
+            placeholder={t("Note")}
           />
         </Section>
 
