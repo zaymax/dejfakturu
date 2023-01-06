@@ -354,7 +354,7 @@ class Form extends Component {
           </div>
         </div>
 
-        <button type="button" onClick={this.createAndDownloadPdf}>
+        <button type="button" className="button" onClick={this.createAndDownloadPdf}>
           {t("Generate PDF")}
         </button>
       </form>
