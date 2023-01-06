@@ -28,6 +28,7 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  width: fit-content;
 }
 
 .button {

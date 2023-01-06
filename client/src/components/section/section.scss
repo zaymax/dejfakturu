@@ -8,11 +8,15 @@
   &__columns-one-column {
     display: grid;
     grid-template-columns: 1fr;
+    width: fit-content;
+    gap: 10px;
   }
 
   &__content-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    width: fit-content;
+    gap: 10px;
   }
 }
