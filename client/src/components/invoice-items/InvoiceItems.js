@@ -24,7 +24,7 @@ class InvoiceItems extends Component {
           <button
             type="button"
             onClick={() => this.props.handleDeleteItem(item.id)}
-            className="invoice-item__button"
+            className="button"
           >
             {t("Delete")}
           </button>
@@ -36,7 +36,7 @@ class InvoiceItems extends Component {
       <div className="invoice-items">
         <div className="invoice-items__items">{items}</div>
         <div className="invoice-items__buttons">
-          <button type="button" onClick={this.props.handleAddItem}>
+          <button type="button" className="button" onClick={this.props.handleAddItem}>
             {t("Add another item")}
           </button>
         </div>

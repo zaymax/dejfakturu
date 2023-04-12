@@ -1,11 +1,23 @@
 .App {
   height: 100%;
+  width: 100%;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
   .header {
     text-align: center;
     background-color: #fff;
     position: fixed;
     top: 0;
     width: 100%;
+    font-size: 2em;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
