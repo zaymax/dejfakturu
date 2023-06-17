@@ -11,7 +11,7 @@
 
   .header {
     text-align: center;
-    background-color: #fff;
+    background-color: #fff; // make variable from this
     position: fixed;
     top: 0;
     width: 100%;
@@ -24,11 +24,11 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #f4f9fb;
+  background-color: #f4f9fb; // make variable from this
 }
 
 .App-link {
-  color: #61dafb;
+  color: #61dafb; // make variable from this
 }
 
 .menu {
@@ -37,7 +37,7 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #61dafb;
+  background-color: #61dafb; // make variable from this
   &__logo {
     width: 100%;
     margin-left: 10px;
@@ -54,7 +54,7 @@ body {
   &__link {
     margin-right: 10px;
     &-text {
-      color: black;
+      color: black; // make variable from this
     }
     a {
       text-decoration: none;
@@ -65,7 +65,19 @@ body {
   &__button {
     background-color: blue;
     padding: 10px 20px;
-    color: white;
+    color: white; // make variable from this
     border-radius: 5px;
   }
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white; // make variable from this
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

@@ -25,5 +25,7 @@
     "Description": "Popis",
     "Price": "Cena",
     "Add another item": "Přidat další položku",
-    "Delete": "Smazat"
+    "Delete": "Smazat",
+    "Invoices": "Faktury",
+    "Dashboard": "Přehled"
 }

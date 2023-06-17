@@ -1,0 +1,23 @@
+.page {
+  display: inline-grid;
+  grid-template-columns: 1fr 4fr;
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin: 10px;
+}
+
+.sidebar {
+  background-color: white; // make variable from this
+  padding: 10px;
+  li {
+    text-decoration: none;
+    list-style: none;
+  }
+}
+
+.content {
+    background-color: white; // make variable from this
+  margin-left: 10px;
+  padding: 10px;
+}
