@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { withTranslation } from "react-i18next";
-import InvoiceItem from "./InvoiceItem";
+import InvoiceItem from "./invoice-item/InvoiceItem";
+import "./invoice-items.scss";
 
 class InvoiceItems extends Component {
   render() {
