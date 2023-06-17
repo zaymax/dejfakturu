@@ -1,6 +1,6 @@
-import "../../styles/reset.scss"
+import "../styles/reset.scss"
 import "./App.scss";
-import Form from "../form/Form.js";
+import Form from "../components/form/Form";
 
 function App() {
   return (
