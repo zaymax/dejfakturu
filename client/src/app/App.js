@@ -1,12 +1,12 @@
 import "../styles/reset.scss"
 import "./App.scss";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import { Homepage } from "../../pages/homepage/Homepage";
-import { About } from "../../pages/about/About";
-import { Prices } from "../../pages/prices/Prices";
-import { Login } from "../../pages/login/Login";
-import { Register } from "../../pages/register/Register";
-import { Dashboard } from "../../pages/dashboard/Dashboard";
+import { Homepage } from "../pages/homepage/Homepage";
+import { About } from "../pages/about/About";
+import { Prices } from "../pages/prices/Prices";
+import { Login } from "../pages/login/Login";
+import { Register } from "../pages/register/Register";
+import { Dashboard } from "../pages/dashboard/Dashboard";
 import Form from "../components/form/Form";
 
 function App() {
