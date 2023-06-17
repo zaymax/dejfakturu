@@ -1,7 +1,7 @@
 import { Component } from "react";
-import { DateInput } from "../inputs/DateInput";
-import { NumberInput } from "../inputs/NumberInput";
-import { StringInput } from "../inputs/StringInput";
+import { DateInput } from "../inputs/date-input/DateInput";
+import { NumberInput } from "../inputs/number-input/NumberInput";
+import { StringInput } from "../inputs/string-input/StringInput";
 import InvoiceItems from "../invoice-items/InvoiceItems";
 import { Section } from "../section/Section";
 import axios from "axios";
