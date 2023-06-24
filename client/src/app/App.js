@@ -16,6 +16,7 @@ import { Dashboard } from "../pages/dashboard/Dashboard";
 import Form from "../components/form/Form";
 import useToken from "./useToken";
 import { t } from "i18next";
+import { MenuItem } from "../components/menu-item/MenuItem";
 
 function App() {
   const { token, setToken, removeToken } = useToken();
@@ -29,59 +30,19 @@ function App() {
               <Link to="/">Dejfakturu.cz - (alpha)</Link>
             </h1>
             <ul className="menu__links">
+              {token && <MenuItem link="/" text={t("Dashboard")} />}
+              {!token && <MenuItem link="/" text={t("Homepage")} />}
+              <MenuItem link="/create-invoice" text={t("Create invoice")} />
+              {!token && <MenuItem link="/about" text={t("About")} />}
+              {!token && <MenuItem link="/prices" text={t("Prices")} />}
+              {!token && <MenuItem link="/login" text={t("Login")} />}
               {token && (
-                <li className="menu__link">
-                  <Link to="/" className="menu__link-text">
-                    Dashboard
-                  </Link>
-                </li>
-              )}
-              {!token && (
-                <li className="menu__link">
-                  <Link to="/" className="menu__link-text">
-                    {t("Homepage")}
-                  </Link>
-                </li>
-              )}
-              <li className="menu__link">
-                <Link to="/create-invoice" className="menu__link-text">
-                  {t("Create invoice")}
-                </Link>
-              </li>
-              {!token && (
-                <li className="menu__link">
-                  <Link to="/about" className="menu__link-text">
-                    {t("About")}
-                  </Link>
-                </li>
-              )}
-              {!token && (
-                <li className="menu__link">
-                  <Link to="/prices" className="menu__link-text">
-                    {t("Prices")}
-                  </Link>
-                </li>
-              )}
-              {!token && (
-                <li className="menu__link">
-                  <Link to="/login" className="menu__link-text">
-                    {t("Login")}
-                  </Link>
-                </li>
-              )}
-              {token && (
-                <li className="menu__link">
-                  <Link to="/login" className="menu__link-text">
-                    <button onClick={removeToken}>{t("Logout")}</button>
-                  </Link>
-                </li>
+                <MenuItem link="/login">
+                  <button onClick={removeToken}>{t("Logout")}</button>
+                </MenuItem>
               )}
 
-              {!token && (
-                <li className="menu__link">
-                  <Link to="/register">{t("Register")}</Link>
-                </li>
-              )}
+              {!token && <MenuItem link="/register" text={t("Register")} />}
             </ul>
           </div>
 
