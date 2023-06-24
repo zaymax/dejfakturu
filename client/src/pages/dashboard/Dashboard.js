@@ -6,16 +6,19 @@ export function Dashboard() {
     <div className="page">
       <div className="sidebar">
         <nav>
-          <li>{t("Dashboard")}</li>
-          <li>{t("Invoices")}</li>
-          <li>{t("Create invoice")}</li>
-          <li>{t("Contacts")}</li>
-          <li>{t("Reports")}</li>
-          <li>{t("Settings")}</li>
+          <ul>
+            <li>{t("Dashboard")}</li>
+            <li>{t("Invoices")}</li>
+            <li>{t("Create invoice")}</li>
+            <li>{t("Contacts")}</li>
+            <li>{t("Reports")}</li>
+            <li>{t("Settings")}</li>
+          </ul>
         </nav>
       </div>
       <div className="content">
-        <p>Content</p>
+        <p>{t("Content")}</p>
+        <p>Dashboard page</p>
       </div>
     </div>
   );

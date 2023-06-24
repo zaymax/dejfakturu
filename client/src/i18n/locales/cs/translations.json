@@ -27,5 +27,16 @@
     "Add another item": "Přidat další položku",
     "Delete": "Smazat",
     "Invoices": "Faktury",
-    "Dashboard": "Přehled"
+    "Dashboard": "Přehled",
+    "Reports": "Reporty",
+    "Settings": "Nastavení",
+    "Contacts": "Kontakty",
+    "Create invoice": "Vytvořit novou fakturu",
+    "Content": "Obsah",
+    "Logout": "Odhlásit se",
+    "Homepage": "Domovská stránka",
+    "About": "O projektu",
+    "Prices": "Ceny",
+    "Login": "Přihlásit se",
+    "Register": "Registrace"
 }

@@ -15,6 +15,7 @@ import { Register } from "../pages/register/Register";
 import { Dashboard } from "../pages/dashboard/Dashboard";
 import Form from "../components/form/Form";
 import useToken from "./useToken";
+import { t } from "i18next";
 
 function App() {
   const { token, setToken, removeToken } = useToken();
@@ -22,59 +23,71 @@ function App() {
   return (
     <>
       <Router>
-        <nav className="">
+        <div className="">
           <div className="menu">
-            <h1 className="menu__logo">Dejfakturu.cz - (alpha)</h1>
+            <h1 className="menu__logo">
+              <Link to="/">Dejfakturu.cz - (alpha)</Link>
+            </h1>
             <ul className="menu__links">
-              <li className="menu__link">
-                <Link to="/" className="menu__link-text">
-                  Homepage
-                </Link>
-              </li>
+              {token && (
+                <li className="menu__link">
+                  <Link to="/" className="menu__link-text">
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+              {!token && (
+                <li className="menu__link">
+                  <Link to="/" className="menu__link-text">
+                    {t("Homepage")}
+                  </Link>
+                </li>
+              )}
               <li className="menu__link">
                 <Link to="/create-invoice" className="menu__link-text">
-                  Create invoice
-                </Link>
-              </li>
-              <li className="menu__link">
-                <Link to="/about" className="menu__link-text">
-                  About
-                </Link>
-              </li>
-              <li className="menu__link">
-                <Link to="/prices" className="menu__link-text">
-                  Prices
-                </Link>
-              </li>
-              <li className="menu__link">
-                <Link to="/dashboard" className="menu__link-text">
-                  Dashboard
+                  {t("Create invoice")}
                 </Link>
               </li>
               {!token && (
                 <li className="menu__link">
+                  <Link to="/about" className="menu__link-text">
+                    {t("About")}
+                  </Link>
+                </li>
+              )}
+              {!token && (
+                <li className="menu__link">
+                  <Link to="/prices" className="menu__link-text">
+                    {t("Prices")}
+                  </Link>
+                </li>
+              )}
+              {!token && (
+                <li className="menu__link">
                   <Link to="/login" className="menu__link-text">
-                    Login
+                    {t("Login")}
                   </Link>
                 </li>
               )}
               {token && (
                 <li className="menu__link">
                   <Link to="/login" className="menu__link-text">
-                    <button onClick={removeToken}>Logout</button>
+                    <button onClick={removeToken}>{t("Logout")}</button>
                   </Link>
                 </li>
               )}
 
-              <li className="menu__link">
-                <Link to="/register">Register</Link>
-              </li>
+              {!token && (
+                <li className="menu__link">
+                  <Link to="/register">{t("Register")}</Link>
+                </li>
+              )}
             </ul>
           </div>
 
           <Routes>
             <Route path="/create-invoice" element={<Form />} />
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={token ? <Dashboard /> : <Homepage />} />
             <Route path="/about" element={<About />} />
             <Route path="/prices" element={<Prices />} />
             <Route
@@ -84,11 +97,12 @@ function App() {
               }
             />
             <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
-        </nav>
+        </div>
       </Router>
-      <div className="footer"><a href="https://zaytsev.cz/">@ Maksim Zaytsev</a></div>
+      <div className="footer">
+        <a href="https://zaytsev.cz/">@ Maksim Zaytsev</a>
+      </div>
     </>
   );
 }
