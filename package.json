@@ -19,7 +19,12 @@
         "body-parser": "^1.18.3",
         "concurrently": "^7.3.0",
         "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
         "express": "^4.16.4",
+        "mongoose": "^7.3.1",
         "pdf-creator-node": "^2.3.4"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
     }
 }
